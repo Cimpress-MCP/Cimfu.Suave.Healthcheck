@@ -323,7 +323,7 @@ Target "Release" (fun _ ->
     Branches.pushTag "" "origin" release.NugetVersion
     
     // release on github
-    createClient (getBuildParamOrDefault "github-user" "") (getBuildParamOrDefault "github-pw" "")
+    createClientWithToken (getBuildParamOrDefault "github-token" "")
     |> createDraft gitOwner gitName release.NugetVersion (release.SemVer.PreRelease <> None) release.Notes 
     // TODO: |> uploadFile "PATH_TO_FILE"    
     |> releaseDraft
