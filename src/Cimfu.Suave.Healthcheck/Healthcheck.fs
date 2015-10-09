@@ -89,10 +89,26 @@ type HealthcheckResult =
   static member Healthy = { Status = Healthy; Message = None }
   static member Unhealthy message = { Status = Unhealthy; Message = Some message }
 
+module Switches =
+  type HealthSwitch =
+    { Enable : unit -> unit
+      Disable : unit -> unit
+      Check : unit -> Async<HealthcheckResult> }
+
+  let mk () =
+    let mutable enabled = true
+    { Enable = fun () -> enabled <- true
+      Disable = fun () -> enabled <- false
+      Check = fun () ->
+        if enabled then HealthcheckResult.Healthy
+        else HealthcheckResult.Unhealthy "Manually disabled"
+        |> async.Return }
+
 [<RequireQualifiedAccess>]
 module Checks =
   let noop = fun () -> async.Return HealthcheckResult.Healthy
-
+  let defaultSwitch = Switches.mk ()
+ 
 let merge l r =
   match l, r with
   | Unhealthy, _
