@@ -1,7 +1,7 @@
 (*** hide ***)
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
-#I "../../bin"
+#I "../../bin/Cimfu.Suave.Healthcheck"
 
 (**
 Cimfu.Suave.Healthcheck
@@ -23,13 +23,22 @@ Documentation
 Example
 -------
 
-This example demonstrates using a function defined in this sample library.
+This example demonstrates attaching a noop healthcheck to a Suave `WebPart`.
 
 *)
+#r "Suave.dll"
 #r "Cimfu.Suave.Healthcheck.dll"
+open Suave
+open Suave.Types
 open Cimfu.Suave.Healthcheck
 
-printfn "hello = %i" <| Library.hello 0
+let myApp : WebPart = Http.RequestErrors.NOT_FOUND "Not here"
+
+let healthchecks = Map.ofList ["noop", Checks.noop]
+
+let app =
+  myApp
+  |> withHealthcheck healthchecks
 
 (**
 Some more info
