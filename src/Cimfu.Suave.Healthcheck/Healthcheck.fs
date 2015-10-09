@@ -44,7 +44,7 @@ module private Time =
     let inline ofTimestampDiff (stampsPerSecond : int64<stamp/sec>) (tsDiff : int64<stamp>) =
         (toDecimalWithMeasure tsDiff) * ticksPerSec / (toDecimalWithMeasure stampsPerSecond) |> ofTicks
 
-  let isoDateTimePattern = Text.InstantPattern.Create("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'z'", System.Globalization.CultureInfo.InvariantCulture)
+  let isoDateTimePattern = Text.InstantPattern.Create("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'", System.Globalization.CultureInfo.InvariantCulture)
 
   let inline toIsoDateTime i = isoDateTimePattern.Format i
   let inline tryAsIsoDateTime str =
