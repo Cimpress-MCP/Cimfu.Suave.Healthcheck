@@ -200,7 +200,7 @@ let doHealthcheckWith evaluateHealthchecks healthchecks : WebPart =
 
     let aggResult =
       result.Checks
-      |> Map.fold (fun s _ d -> merge s d.Result.Status) Unhealthy
+      |> Map.fold (fun s _ d -> merge s d.Result.Status) Healthy
 
     let status =
         match aggResult with
