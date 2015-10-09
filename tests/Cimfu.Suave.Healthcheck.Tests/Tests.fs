@@ -1,22 +1,23 @@
 module Cimfu.Suave.Healthcheck.Tests
 
 open Cimfu.Suave.Healthcheck
+open NodaTime
 open NUnit.Framework
 open Swensen.Unquote
 
 let testTimingSettings =
-  { GetTime = fun () -> NodaTime.Instant 0L
+  { GetTime = fun () -> Instant 0L
     GetTimestamp = fun () -> 0L<stamp>
     StampsPerSecond = 1L<stamp/sec> }
 
 let testDefaultAggregate =
-  { GenerationTime = NodaTime.Instant 0L
-    Duration = NodaTime.Duration.Zero
+  { GenerationTime = Instant 0L
+    Duration = Duration.Zero
     Checks = Map.empty }
 
 let testDefaultHealthyData =
-  { TestedAt = NodaTime.Instant 0L
-    Duration = NodaTime.Duration.Zero
+  { TestedAt = Instant 0L
+    Duration = Duration.Zero
     Result = HealthcheckResult.Healthy }
 
 let testDefaultUnhealthyData msg =
