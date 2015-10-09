@@ -1,6 +1,7 @@
 Chiron
 FSharp.Core
 NodaTime
+Suave
 
 group Test
   NUnit
