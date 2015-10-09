@@ -1,9 +1,23 @@
 source https://nuget.org/api/v2
 
-nuget FSharp.Formatting
-nuget NUnit 
-nuget NUnit.Runners
-nuget FAKE
-nuget SourceLink.Fake
+nuget Chiron >= 5.1
+nuget FSharp.Core >= 3.1.2.5
+nuget NodaTime >= 1.0
+nuget Suave >= 0.31
 
-github fsharp/FAKE modules/Octokit/Octokit.fsx
+group Build
+  source https://nuget.org/api/v2
+
+  nuget FSharp.Formatting
+  nuget FAKE
+  nuget SourceLink.Fake
+
+  github fsharp/FAKE modules/Octokit/Octokit.fsx
+
+group Test
+  source https://nuget.org/api/v2
+
+  nuget NUnit
+  nuget NUnit.Runners
+  nuget Unquote
+

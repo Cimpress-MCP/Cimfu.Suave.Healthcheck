@@ -1,2 +1,7 @@
-NUnit
-NUnit.Runners
+Chiron
+FSharp.Core
+NodaTime
+
+group Test
+  NUnit
+  Unquote
