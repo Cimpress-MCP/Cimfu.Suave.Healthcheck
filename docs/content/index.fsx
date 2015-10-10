@@ -7,7 +7,9 @@
 Cimfu.Suave.Healthcheck
 ======================
 
-Documentation
+A pluggable healthcheck endpoint for the [Suave][suave] functional web server. Based on the
+[healthcheck.spec specification][hcspec], with a modification that allows a message to be
+recorded on health checks that pass.
 
 <div class="row">
   <div class="span1"></div>
@@ -41,7 +43,6 @@ let app =
   |> withHealthcheck healthchecks
 
 (**
-Some more info
 
 Samples & documentation
 -----------------------
@@ -83,6 +84,8 @@ of the master branch:
   [issues]: https://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/issues
   [readme]: https://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/blob/master/README.md
   [license]: https://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/blob/master/LICENSE.txt
+  [suave]: http://suave.io
+  [hcspec]: https://github.com/Cimpress-MCP/healthcheck.spec
   [travisci]: https://travis-ci.org/Cimpress-MCP/Cimfu.Suave.Healthcheck
   [appveyor]: https://ci.appveyor.com/project/neoeinstein/cimfu-suave-healthcheck/branch/master
 *)
