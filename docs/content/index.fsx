@@ -66,11 +66,23 @@ also want to read the [library design notes][readme] to understand how it works.
 
 The library is available under the Apache v2 license, which allows modification and 
 redistribution for both commercial and non-commercial purposes. For more information see the 
-[License file][license] in the GitHub repository. 
+[License file][license] in the GitHub repository.
+
+Build status
+------------
+
+This project is automatically built by [Travis CI][travisci] and [AppVeyor][appveyor]. The current status
+of the master branch:
+
+ * AppVeyor (Windows): [![Build status](https://ci.appveyor.com/api/projects/status/d74rs3wagh1mxti1/branch/master?svg=true)][appveyor]
+
+ * Travis CI (Mono on Linux): [![Build Status](https://travis-ci.org/Cimpress-MCP/Cimfu.Suave.Healthcheck.svg?branch=master)][travisci]
 
   [content]: https://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/docs/content
   [gh]: https://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck
   [issues]: https://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/issues
   [readme]: https://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/blob/master/README.md
   [license]: https://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/blob/master/LICENSE.txt
+  [travisci]: https://travis-ci.org/Cimpress-MCP/Cimfu.Suave.Healthcheck
+  [appveyor]: https://ci.appveyor.com/project/neoeinstein/cimfu-suave-healthcheck/branch/master
 *)
