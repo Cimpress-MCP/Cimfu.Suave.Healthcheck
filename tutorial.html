@@ -68,7 +68,7 @@ In each of these examples, it is presumed that your existing <code>Suave</code> 
 
 <p>By using <code>withHealthcheck</code> or <code>withHealthcheckAt</code>, the healthcheck functions will attach as a prefix to <code>myApp</code>.
 This means that if there is any request to the healthcheck endpoint, it will be handled by the healthcheck service. Requests
-to this endpoint that are invalid (such as <code>POST</code>s) will be handled by returning an appropriate response (such as a <code>504 METHOD NOT ALLOWED</code>)
+to this endpoint that are invalid (such as <code>POST</code>s) will be handled by returning an appropriate response (such as a <code>405 METHOD NOT ALLOWED</code>)
 instead of passing the context to <code>myApp</code>.</p>
 
 <p>In this way, you can choose to attach multiple healthchecks for services hosted by the same instance:</p>
@@ -105,8 +105,8 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-11T03:07:34Z;
- Duration = 0:00:00:00.0018634;
+<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-11T03:09:12Z;
+ Duration = 0:00:00:00.0018938;
  Result = {Status = Healthy;
            Message = null;};}</code></pre></td></tr></table>
 
@@ -121,8 +121,8 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-11T03:07:34Z;
- Duration = 0:00:00:00.0000019;
+<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-11T03:09:12Z;
+ Duration = 0:00:00:00.0000022;
  Result = {Status = Unhealthy;
            Message = Some "Server manually disabled";};}</code></pre></td></tr></table>
 
@@ -147,26 +147,26 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{GenerationTime = 2015-10-11T03:07:34Z;
- Duration = 0:00:00:00.0028388;
+<table class="pre"><tr><td><pre><code>{GenerationTime = 2015-10-11T03:09:12Z;
+ Duration = 0:00:00:00.0025164;
  Checks =
   map
-    [("main", {TestedAt = 2015-10-11T03:07:34Z;
-               Duration = 0:00:00:00.0000026;
+    [("main", {TestedAt = 2015-10-11T03:09:12Z;
+               Duration = 0:00:00:00.0000022;
                Result = {Status = Healthy;
                          Message = null;};});
-     ("redis", {TestedAt = 2015-10-11T03:07:34Z;
-                Duration = 0:00:00:00.0001448;
+     ("redis", {TestedAt = 2015-10-11T03:09:12Z;
+                Duration = 0:00:00:00.0001798;
                 Result = {Status = Healthy;
                           Message = null;};});
-     ("unreliable", {TestedAt = 2015-10-11T03:07:34Z;
-                     Duration = 0:00:00:00.0002216;
+     ("unreliable", {TestedAt = 2015-10-11T03:09:12Z;
+                     Duration = 0:00:00:00.000236;
                      Result = {Status = Unhealthy;
                                Message = Some "Server disabled";};})];}</code></pre></td></tr></table>
 
 <p>This result gets serialized to JSON and returned to the client with the appropriate HTTP status</p>
 
-<table class="pre"><tr><td><pre><code>"{"duration_millis":2.8,"generated_at":"2015-10-11T03:07:34.538Z","tests":{"main":{"duration_millis":0,"result":"passed","tested_at":"2015-10-11T03:07:34.536Z"},"redis":{"duration_millis":0.1,"result":"passed","tested_at":"2015-10-11T03:07:34.537Z"},"unreliable":{"duration_millis":0.2,"message":"Server disabled","result":"failed","tested_at":"2015-10-11T03:07:34.537Z"}}}"</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>"{"duration_millis":2.5,"generated_at":"2015-10-11T03:09:12.832Z","tests":{"main":{"duration_millis":0,"result":"passed","tested_at":"2015-10-11T03:09:12.831Z"},"redis":{"duration_millis":0.2,"result":"passed","tested_at":"2015-10-11T03:09:12.831Z"},"unreliable":{"duration_millis":0.2,"message":"Server disabled","result":"failed","tested_at":"2015-10-11T03:09:12.831Z"}}}"</code></pre></td></tr></table>
 
 <div class="tip" id="fs1">namespace Suave</div>
 <div class="tip" id="fs2">module Http<br /><br />from Suave</div>
