@@ -65,6 +65,7 @@
   -->
   <Import Project="..\..\.paket\paket.targets" />
   <ItemGroup>
+    <Compile Include="Prelude.fs" />
     <Compile Include="Tests.fs" />
     <Compile Include="SuaveTests.fs" />
     <None Include="paket.references" />
