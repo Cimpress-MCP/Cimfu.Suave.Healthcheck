@@ -55,6 +55,15 @@ For additional documentation, see our tutorial and API reference. The [source][g
    and functions in the library. This includes additional brief samples on using most of the
    functions.
 
+Versioning
+----------
+
+This project is versioned following [SemVer v2.0][semver2] conventions. The library is currently in a
+pre-version-1.0 state, which means that minor version increments may contain breaking changes. Once version
+1.0 is released, the package will be versioned such that breaking changes are only introduced with a major
+version increment. Minor version increments indicate new functionality, and patch increments indicate
+bug fixes or minor internal changes.
+
 Contributing and copyright
 --------------------------
 
@@ -86,4 +95,5 @@ of the master branch:
   [hcspec]: https://github.com/Cimpress-MCP/healthcheck.spec
   [travisci]: https://travis-ci.org/Cimpress-MCP/Cimfu.Suave.Healthcheck
   [appveyor]: https://ci.appveyor.com/project/neoeinstein/cimfu-suave-healthcheck/branch/master
+  [semver2]: http://semver.org/spec/v2.0.0.html
 *)
