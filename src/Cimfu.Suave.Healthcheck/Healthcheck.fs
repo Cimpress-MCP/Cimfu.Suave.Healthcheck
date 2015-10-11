@@ -20,9 +20,8 @@ type HealthcheckStatus =
   /// Otherwise the result will be `Unhealthy`.
   static member (+) (l, r) =
     match l, r with
-    | Unhealthy, _
-    | _, Unhealthy -> Unhealthy
-    | _-> Healthy
+    | Healthy, Healthy -> Healthy
+    | _-> Unhealthy
 
 /// The result of running a healthcheck; combines a `HealthcheckStatus` with
 /// an optional status message.
