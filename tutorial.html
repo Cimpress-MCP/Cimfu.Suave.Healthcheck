@@ -105,8 +105,8 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-11T03:09:12Z;
- Duration = 0:00:00:00.0018938;
+<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-11T14:43:12Z;
+ Duration = 0:00:00:00.001836;
  Result = {Status = Healthy;
            Message = null;};}</code></pre></td></tr></table>
 
@@ -121,7 +121,7 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-11T03:09:12Z;
+<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-11T14:43:12Z;
  Duration = 0:00:00:00.0000022;
  Result = {Status = Unhealthy;
            Message = Some "Server manually disabled";};}</code></pre></td></tr></table>
@@ -147,26 +147,26 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{GenerationTime = 2015-10-11T03:09:12Z;
- Duration = 0:00:00:00.0025164;
+<table class="pre"><tr><td><pre><code>{GenerationTime = 2015-10-11T14:43:12Z;
+ Duration = 0:00:00:00.0029726;
  Checks =
   map
-    [("main", {TestedAt = 2015-10-11T03:09:12Z;
+    [("main", {TestedAt = 2015-10-11T14:43:12Z;
                Duration = 0:00:00:00.0000022;
                Result = {Status = Healthy;
                          Message = null;};});
-     ("redis", {TestedAt = 2015-10-11T03:09:12Z;
-                Duration = 0:00:00:00.0001798;
+     ("redis", {TestedAt = 2015-10-11T14:43:12Z;
+                Duration = 0:00:00:00.0001501;
                 Result = {Status = Healthy;
                           Message = null;};});
-     ("unreliable", {TestedAt = 2015-10-11T03:09:12Z;
-                     Duration = 0:00:00:00.000236;
+     ("unreliable", {TestedAt = 2015-10-11T14:43:12Z;
+                     Duration = 0:00:00:00.0002067;
                      Result = {Status = Unhealthy;
                                Message = Some "Server disabled";};})];}</code></pre></td></tr></table>
 
 <p>This result gets serialized to JSON and returned to the client with the appropriate HTTP status</p>
 
-<table class="pre"><tr><td><pre><code>"{"duration_millis":2.5,"generated_at":"2015-10-11T03:09:12.832Z","tests":{"main":{"duration_millis":0,"result":"passed","tested_at":"2015-10-11T03:09:12.831Z"},"redis":{"duration_millis":0.2,"result":"passed","tested_at":"2015-10-11T03:09:12.831Z"},"unreliable":{"duration_millis":0.2,"message":"Server disabled","result":"failed","tested_at":"2015-10-11T03:09:12.831Z"}}}"</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>"{"duration_millis":3,"generated_at":"2015-10-11T14:43:12.924Z","tests":{"main":{"duration_millis":0,"result":"passed","tested_at":"2015-10-11T14:43:12.923Z"},"redis":{"duration_millis":0.2,"result":"passed","tested_at":"2015-10-11T14:43:12.923Z"},"unreliable":{"duration_millis":0.2,"message":"Server disabled","result":"failed","tested_at":"2015-10-11T14:43:12.923Z"}}}"</code></pre></td></tr></table>
 
 <div class="tip" id="fs1">namespace Suave</div>
 <div class="tip" id="fs2">module Http<br /><br />from Suave</div>
