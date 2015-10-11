@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Healthcheck - Cimfu.Suave.Healthcheck</title>
+    <title>Internal - Cimfu.Suave.Healthcheck</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="Marcus Griep"/>
@@ -35,11 +35,15 @@
 
 
 
-<h1>Healthcheck</h1>
+<h1>Internal</h1>
 <p>
   <span>Namespace: Cimfu.Suave</span><br />
+  <span>Parent Module: <a href="cimfu-suave-healthcheck.html">Healthcheck</a></span>
 </p>
 <div class="xmldoc">
+<p>Several internal functions that are not commonly used by consumers of this library.</p>
+
+
 </div>
 
 <!-- Render nested types and modules, if there are any -->
@@ -52,72 +56,63 @@
     <tbody>
         <tr>
           <td class="type-name">
-            <a href="cimfu-suave-healthcheck-healthswitch.html">HealthSwitch</a>
+            <a href="cimfu-suave-healthcheck-internal-aggregatehealthcheckresult.html">AggregateHealthcheckResult</a>
           </td>
-          <td class="xmldoc"><p>A switch associated with a healthcheck which can be set to
-return <code>Healthy</code> when enabled and <code>Unhealthy</code> when disabled.</p>
+          <td class="xmldoc"><p>Represents an aggregate result of several evaluated healthchecks.</p>
 
 
 </td>
         </tr>
         <tr>
           <td class="type-name">
-            <a href="cimfu-suave-healthcheck-healthcheck.html">Healthcheck</a>
+            <a href="cimfu-suave-healthcheck-internal-healthcheckdata.html">HealthcheckData</a>
           </td>
-          <td class="xmldoc"><p>The function signature for a healthcheck: <code>unit -&gt; Async&lt;HealthcheckResult&gt;</code>.</p>
+          <td class="xmldoc"><p>Represents the context of an evaluated healthcheck.</p>
 
 
 </td>
         </tr>
         <tr>
           <td class="type-name">
-            <a href="cimfu-suave-healthcheck-healthcheckresult.html">HealthcheckResult</a>
+            <a href="cimfu-suave-healthcheck-internal-timingsettings.html">TimingSettings</a>
           </td>
-          <td class="xmldoc"><p>The result of running a healthcheck; combines a <code>HealthcheckStatus</code> with
-an optional status message.</p>
+          <td class="xmldoc"><p>Timing information. Specifying custom values is helpful for testing purposes.</p>
 
 
 </td>
         </tr>
         <tr>
           <td class="type-name">
-            <a href="cimfu-suave-healthcheck-healthcheckstatus.html">HealthcheckStatus</a>
+            <a href="cimfu-suave-healthcheck-internal-ms.html">ms</a>
           </td>
-          <td class="xmldoc"><p>A status representing the success or failure of a particular healthcheck.</p>
-
-
-</td>
-        </tr>
-    </tbody>
-  </table>
-  <table class="table table-bordered module-list">
-    <thead>
-      <tr><td>Module</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="module-name">
-            <a href="cimfu-suave-healthcheck-checks.html">Checks</a>
-          </td>
-          <td class="xmldoc"><p>A set of core healthchecks.</p>
+          <td class="xmldoc"><p>Represents one millisecond.</p>
 
 
 </td>
         </tr>
         <tr>
-          <td class="module-name">
-            <a href="cimfu-suave-healthcheck-healthswitchmodule.html">HealthSwitch</a>
+          <td class="type-name">
+            <a href="cimfu-suave-healthcheck-internal-sec.html">sec</a>
           </td>
-          <td class="xmldoc"><p>A set of functions for operating with the <code>HealthSwitch</code> type.</p>
+          <td class="xmldoc"><p>Represents one second.</p>
 
 
 </td>
         </tr>
         <tr>
-          <td class="module-name">
-            <a href="cimfu-suave-healthcheck-internal.html">Internal</a>
+          <td class="type-name">
+            <a href="cimfu-suave-healthcheck-internal-stamp.html">stamp</a>
           </td>
-          <td class="xmldoc"><p>Several internal functions that are not commonly used by consumers of this library.</p>
+          <td class="xmldoc"><p>Represents one stopwatch timestamp (as reported by <code>System.Diagnostics.Stopwatch</code>).</p>
+
+
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="cimfu-suave-healthcheck-internal-tick.html">tick</a>
+          </td>
+          <td class="xmldoc"><p>Represents one clock tick (as reported by <code>NodaTime</code>).</p>
 
 
 </td>
@@ -136,20 +131,20 @@ an optional status message.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
-            doHealthcheck hcMap
+          <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
+            doHealthcheckWith (...)
           </code>
-          <div class="tip" id="1">
-            <strong>Signature:</strong> hcMap:Map&lt;string,Healthcheck&gt; -&gt; WebPart<br />
-                      </div>
+          <div class="tip" id="14">
+            <strong>Signature:</strong> evaluateHealthchecks:(&#39;?7243 -&gt; Async&lt;AggregateHealthcheckResult&gt;) -&gt; healthchecks:&#39;?7243 -&gt; WebPart<br />
+                          <strong>Type parameters:</strong> '?7243          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L311-311" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L270-270" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Evaluates a specified set of healthchecks and returns a new
-<code>HttpContext</code> representing the serialized result.</p>
+          <p>A <code>Suave</code> <code>WebPart</code> which will evaluate a set of healthchecks using
+the specified evaluator.</p>
 
 
 
@@ -158,19 +153,20 @@ an optional status message.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
-            evaluateHealthcheck hc
+          <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
+            evaluateHealthchecksWith (...)
           </code>
-          <div class="tip" id="2">
-            <strong>Signature:</strong> hc:Healthcheck -&gt; Async&lt;HealthcheckData&gt;<br />
-                      </div>
+          <div class="tip" id="15">
+            <strong>Signature:</strong> tsSettings:TimingSettings -&gt; evaluateHealthcheck:(&#39;?7241 -&gt; Async&lt;HealthcheckData&gt;) -&gt; hcMap:Map&lt;string,&#39;?7241&gt; -&gt; Async&lt;AggregateHealthcheckResult&gt;<br />
+                          <strong>Type parameters:</strong> '?7241          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L302-302" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L255-255" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Asynchronously evaluates a healthcheck.</p>
+          <p>Asynchronously evaluates a set of healthchecks with the specified
+timing settings and healthcheck evaluator.</p>
 
 
 
@@ -179,19 +175,19 @@ an optional status message.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '3', 3)" onmouseover="showTip(event, '3', 3)">
-            evaluateHealthchecks hcMap
+          <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
+            evaluateHealthcheckWith tsSettings hc
           </code>
-          <div class="tip" id="3">
-            <strong>Signature:</strong> hcMap:Map&lt;string,Healthcheck&gt; -&gt; Async&lt;AggregateHealthcheckResult&gt;<br />
+          <div class="tip" id="16">
+            <strong>Signature:</strong> tsSettings:TimingSettings -&gt; hc:Healthcheck -&gt; Async&lt;HealthcheckData&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L306-306" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L234-234" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Asynchronously evaluates a set of healthchecks.</p>
+          <p>Asynchronously evaluates a healthcheck with the specified timing settings.</p>
 
 
 
@@ -200,44 +196,42 @@ an optional status message.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
-            withHealthcheck hcMap app
+          <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
+            evaluateMappedHealthcheck (...)
           </code>
-          <div class="tip" id="4">
-            <strong>Signature:</strong> hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:WebPart -&gt; WebPart<br />
-                      </div>
+          <div class="tip" id="17">
+            <strong>Signature:</strong> evaluateHealthcheck:(&#39;?7237 -&gt; Async&lt;&#39;?7238&gt;) -&gt; (k:&#39;?7239 * v:&#39;?7237) -&gt; Async&lt;&#39;?7239 * &#39;?7238&gt;<br />
+                          <strong>Type parameters:</strong> '?7237, '?7238, '?7239          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L325-325" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L247-247" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Asynchronously evaluates a healthcheck and associates the resulting data with its key.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
+            withHealthcheckWith (...)
+          </code>
+          <div class="tip" id="18">
+            <strong>Signature:</strong> doHealthcheckWith:(&#39;?7245 -&gt; HttpContext -&gt; Async&lt;HttpContext option&gt;) -&gt; rootPath:string -&gt; healthchecks:&#39;?7245 -&gt; app:WebPart -&gt; WebPart<br />
+                          <strong>Type parameters:</strong> '?7245          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L292-292" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Attaches a healthcheck endpoint as a prefix to a <code>Suave</code> <code>WebPart</code>
-handling all requests for paths starting with "/healthcheck".</p>
-
-<p>An <code>app</code> may be fluently pipelined into this function.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
-            withHealthcheckAt rootPath hcMap app
-          </code>
-          <div class="tip" id="5">
-            <strong>Signature:</strong> rootPath:string -&gt; hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:WebPart -&gt; WebPart<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L318-318" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Attaches a healthcheck endpoint as a prefix to a <code>Suave</code> <code>WebPart</code>
-handling all requests for paths starting with <code>rootPath</code>.</p>
+handling all requests beginning with <code>rootPath</code>. Healthchecks are
+evaluated using <code>doHealthcheckWith</code>.</p>
 
 <p>An <code>app</code> may be fluently pipelined into this function.</p>
 

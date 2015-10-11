@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Checks - Cimfu.Suave.Healthcheck</title>
+    <title>HealthSwitch - Cimfu.Suave.Healthcheck</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="Marcus Griep"/>
@@ -35,13 +35,13 @@
 
 
 
-<h1>Checks</h1>
+<h1>HealthSwitch</h1>
 <p>
   <span>Namespace: Cimfu.Suave</span><br />
   <span>Parent Module: <a href="cimfu-suave-healthcheck.html">Healthcheck</a></span>
 </p>
 <div class="xmldoc">
-<p>A set of core healthchecks.</p>
+<p>A set of functions for operating with the <code>HealthSwitch</code> type.</p>
 
 
 </div>
@@ -57,19 +57,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
-            alwaysHealthy()
+          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+            disable(hs)
           </code>
-          <div class="tip" id="6">
-            <strong>Signature:</strong> unit -&gt; Async&lt;HealthcheckResult&gt;<br />
+          <div class="tip" id="9">
+            <strong>Signature:</strong> hs:HealthSwitch -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L94-94" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L83-83" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A simple healthcheck that will always report <code>Healthy</code>.</p>
+          <p>Disables the switch so that it will report <code>Unhealthy</code> during a healthcheck.</p>
 
 
 
@@ -78,20 +78,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
-            alwaysUnhealthy()
+          <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+            enable(hs)
           </code>
-          <div class="tip" id="7">
-            <strong>Signature:</strong> unit -&gt; Async&lt;HealthcheckResult&gt;<br />
+          <div class="tip" id="10">
+            <strong>Signature:</strong> hs:HealthSwitch -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L97-97" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L80-80" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A simple healthcheck that will always report <code>Unhealthy</code>. Including this
-healthcheck will cause the service to always report as <code>Unhealthy</code>.</p>
+          <p>Enables the switch so that it will report <code>Healthy</code> during a healthcheck.</p>
 
 
 
@@ -100,20 +99,63 @@ healthcheck will cause the service to always report as <code>Unhealthy</code>.</
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
-            serverMainSwitch
+          <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+            healthcheck(hs)
           </code>
-          <div class="tip" id="8">
-            <strong>Signature:</strong> Healthcheck<br />
+          <div class="tip" id="11">
+            <strong>Signature:</strong> hs:HealthSwitch -&gt; Healthcheck<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L100-100" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L77-77" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A healthcheck that will report status of the main server switch provided
-by <code>HealthSwitch.serverMain</code>.</p>
+          <p>Returns the healthcheck associated with a switch.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
+            mk(disabledMessage)
+          </code>
+          <div class="tip" id="12">
+            <strong>Signature:</strong> disabledMessage:string option -&gt; HealthSwitch<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L68-68" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a switch which, when disabled, will report the provided <code>disabledMessage</code>.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
+            serverMain
+          </code>
+          <div class="tip" id="13">
+            <strong>Signature:</strong> HealthSwitch<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L88-88" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Main default switch for the whole server. Enabling or disabling this swich
+will cause <code>Checks.serverMainSwitch</code> to report <code>Healthy</code> or <code>Unhealthy</code>
+respectively.</p>
 
 
 
