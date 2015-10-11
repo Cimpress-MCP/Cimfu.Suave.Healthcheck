@@ -1,3 +1,4 @@
+/// A module providing service healthcheck functions for a Suave application.
 module Cimfu.Suave.Healthcheck
 
 open Chiron

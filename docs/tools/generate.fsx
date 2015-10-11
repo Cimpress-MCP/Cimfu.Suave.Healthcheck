@@ -64,7 +64,7 @@ subDirectories (directoryInfo templates)
 let copyFiles () =
   CopyRecursive files output true |> Log "Copying file: "
   ensureDirectory (output @@ "content")
-  CopyRecursive (formatting @@ "styles") (output @@ "content") true 
+  CopyRecursive (formatting @@ "styles") (output @@ "content") true
     |> Log "Copying styles and scripts: "
 
 let references =
@@ -85,13 +85,13 @@ let references =
   else None
 
 let binaries =
-    directoryInfo bin 
+    directoryInfo bin
     |> subDirectories
     |> Array.map (fun d -> d.FullName @@ (sprintf "%s.dll" d.Name))
     |> List.ofArray
 
 let libDirs =
-    directoryInfo bin 
+    directoryInfo bin
     |> subDirectories
     |> Array.map (fun d -> d.FullName)
     |> List.ofArray
@@ -123,6 +123,7 @@ let buildDocumentation () =
     Literate.ProcessDirectory
       ( dir, docTemplate, output @@ sub, replacements = ("root", root)::info,
         layoutRoots = layoutRoots,
+        fsiEvaluator = FsiEvaluator(),
         ?assemblyReferences = references,
         generateAnchors = true )
 
