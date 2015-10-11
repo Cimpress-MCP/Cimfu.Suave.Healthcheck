@@ -6,12 +6,12 @@ open Swensen.Unquote
 open Suave
 open Suave.Types
 
-open Cimfu.Suave.Healthcheck.Internals
+open Cimfu.Suave.Healthcheck.Internal
 
 [<Test>]
 let ``Roundtrip works as expected for success Async`` () =
   let expectedResponseBody = """{"duration_millis":0,"generated_at":"1970-01-01T00:00:00.000Z","tests":{"main":{"duration_millis":0,"result":"passed","tested_at":"1970-01-01T00:00:00.000Z"}}}"""
-  let hcMap = Map.ofList ["main", HealthSwitch.mk "Test Disabled Message" |> HealthSwitch.healthcheck]
+  let hcMap = Map.ofList ["main", HealthSwitch.mk (Some "Test Disabled Message") |> HealthSwitch.healthcheck]
   async {
     let! resultContext = doHealthcheckWith testEvaluateHealthchecks hcMap HttpContext.empty
 
@@ -31,7 +31,7 @@ let ``Roundtrip works as expected for success Async`` () =
 [<Test>]
 let ``Roundtrip works as expected for failure Async`` () =
   let expectedResponseBody = """{"duration_millis":0,"generated_at":"1970-01-01T00:00:00.000Z","tests":{"main":{"duration_millis":0,"message":"Test Disabled Message","result":"failed","tested_at":"1970-01-01T00:00:00.000Z"}}}"""
-  let mySwitch = HealthSwitch.mk "Test Disabled Message"
+  let mySwitch = HealthSwitch.mk (Some "Test Disabled Message")
   let hcMap = Map.ofList ["main", HealthSwitch.healthcheck mySwitch]
   HealthSwitch.disable mySwitch
   async {
@@ -60,21 +60,21 @@ let initialContext uri ``method`` =
 let idCtx =
   fun ctx -> async.Return <| Some ctx
 
-let emptyTestApp = (fun _ -> async.Return None) |> withHealthcheckWith (fun _ -> idCtx) Map.empty
+let emptyTestApp = (fun _ -> async.Return None) |> withHealthcheckWith (fun _ -> idCtx) "/testcheck" Map.empty
 
 [<Test>]
 let ``Routing handles GETs at /healthcheck as expected`` () =
-  let resultContext = emptyTestApp (initialContext "http://example.com/healthcheck" HttpMethod.GET) |> Async.RunSynchronously
+  let resultContext = emptyTestApp (initialContext "http://example.com/testcheck" HttpMethod.GET) |> Async.RunSynchronously
   test <@ Option.isSome resultContext @>
 
 [<Test>]
 let ``Routing handles HEADs at /healthcheck as expected`` () =
-  let resultContext = emptyTestApp (initialContext "http://example.com/healthcheck" HttpMethod.HEAD) |> Async.RunSynchronously
+  let resultContext = emptyTestApp (initialContext "http://example.com/testcheck" HttpMethod.HEAD) |> Async.RunSynchronously
   test <@ Option.isSome resultContext @>
 
 [<Test>]
 let ``Routing handles other methods at /healthcheck as expected`` () =
-  let resultContext = emptyTestApp (initialContext "http://example.com/healthcheck" HttpMethod.POST) |> Async.RunSynchronously
+  let resultContext = emptyTestApp (initialContext "http://example.com/testcheck" HttpMethod.POST) |> Async.RunSynchronously
 
   match resultContext with
   | None -> failwithf "Missing context"

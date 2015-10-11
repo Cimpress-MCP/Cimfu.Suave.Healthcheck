@@ -2,7 +2,7 @@
 module private Prelude
 
 open Cimfu.Suave.Healthcheck
-open Cimfu.Suave.Healthcheck.Internals
+open Cimfu.Suave.Healthcheck.Internal
 open NodaTime
 
 let testTimingSettings =
@@ -22,7 +22,7 @@ let testDefaultHealthyData =
 
 let testDefaultUnhealthyData msg =
   { testDefaultHealthyData with
-      Result = HealthcheckResult.Unhealthy msg}
+      Result = { Status = Unhealthy; Message = msg } }
 
 let testEvaluateHealthcheck =
   evaluateHealthcheckWith testTimingSettings
