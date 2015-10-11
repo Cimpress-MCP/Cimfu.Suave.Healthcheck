@@ -33,7 +33,7 @@ let appAtAltAddress =
 (**
 By using `withHealthcheck` or `withHealthcheckAt`, the healthcheck functions will attach as a prefix to `myApp`.
 This means that if there is any request to the healthcheck endpoint, it will be handled by the healthcheck service. Requests
-to this endpoint that are invalid (such as `POST`s) will be handled by returning an appropriate response (such as a `504 METHOD NOT ALLOWED`)
+to this endpoint that are invalid (such as `POST`s) will be handled by returning an appropriate response (such as a `405 METHOD NOT ALLOWED`)
 instead of passing the context to `myApp`.
 
 In this way, you can choose to attach multiple healthchecks for services hosted by the same instance:
