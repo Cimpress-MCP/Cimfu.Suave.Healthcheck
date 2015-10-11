@@ -35,55 +35,179 @@
           
 <h1><a name="Tutorial" class="anchor" href="#Tutorial">Tutorial</a></h1>
 
-<p>This tutorial is not yet complete, but here is an example of using the healthcheck functionality with Suave.</p>
+<p>This tutorial is not yet complete, but here is an example of using the healthcheck functionality with <code>Suave</code>.
+In each of these examples, it is presumed that your existing <code>Suave</code> application is bound to <code>myApp</code>.</p>
 
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
-<span class="l"> 2: </span>
-<span class="l"> 3: </span>
-<span class="l"> 4: </span>
-<span class="l"> 5: </span>
-<span class="l"> 6: </span>
-<span class="l"> 7: </span>
-<span class="l"> 8: </span>
-<span class="l"> 9: </span>
-<span class="l">10: </span>
-<span class="l">11: </span>
-<span class="l">12: </span>
-<span class="l">13: </span>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="prep">#r</span> <span class="s">&quot;Suave.dll&quot;</span>
-<span class="prep">#r</span> <span class="s">&quot;Cimfu.Suave.Healthcheck.dll&quot;</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">Suave</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="i">Suave</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="i">Types</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="i">Cimfu</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="i">Suave</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">Healthcheck</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 9)" onmouseover="showTip(event, 'fs9', 9)" class="i">healthchecks</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="t">Map</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="f">ofList</span> [<span class="s">&quot;main&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 12)" onmouseover="showTip(event, 'fs12', 12)" class="t">Checks</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 13)" onmouseover="showTip(event, 'fs13', 13)" class="i">serverMainSwitch</span>]
 
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">myApp</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="i">WebPart</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="t">Http</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 10)" onmouseover="showTip(event, 'fs9', 10)" class="t">RequestErrors</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs10', 11)" onmouseover="showTip(event, 'fs10', 11)" class="f">NOT_FOUND</span> <span class="s">&quot;Not here&quot;</span>
-
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 12)" onmouseover="showTip(event, 'fs11', 12)" class="i">healthchecks</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs12', 13)" onmouseover="showTip(event, 'fs12', 13)" class="t">Map</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 14)" onmouseover="showTip(event, 'fs13', 14)" class="f">ofList</span> [<span class="s">&quot;noop&quot;</span>, <span onmouseout="hideTip(event, 'fs14', 15)" onmouseover="showTip(event, 'fs14', 15)" class="i">Checks</span><span class="o">.</span><span class="i">noop</span>]
-
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs15', 16)" onmouseover="showTip(event, 'fs15', 16)" class="i">app</span> <span class="o">=</span>
-  <span onmouseout="hideTip(event, 'fs6', 17)" onmouseover="showTip(event, 'fs6', 17)" class="i">myApp</span>
-  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 18)" onmouseover="showTip(event, 'fs16', 18)" class="f">withHealthcheck</span> <span onmouseout="hideTip(event, 'fs11', 19)" onmouseover="showTip(event, 'fs11', 19)" class="i">healthchecks</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 14)" onmouseover="showTip(event, 'fs14', 14)" class="i">app</span> <span class="o">=</span>
+  <span onmouseout="hideTip(event, 'fs6', 15)" onmouseover="showTip(event, 'fs6', 15)" class="i">myApp</span>
+  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs15', 16)" onmouseover="showTip(event, 'fs15', 16)" class="f">withHealthcheck</span> <span onmouseout="hideTip(event, 'fs9', 17)" onmouseover="showTip(event, 'fs9', 17)" class="i">healthchecks</span>
 </code></pre></td>
 </tr>
 </table>
 
+<p>You can also choose the endpoint at which you would like your healthchecks reported, as in the following example:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 18)" onmouseover="showTip(event, 'fs16', 18)" class="i">appAtAltAddress</span> <span class="o">=</span>
+  <span onmouseout="hideTip(event, 'fs6', 19)" onmouseover="showTip(event, 'fs6', 19)" class="i">myApp</span>
+  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 20)" onmouseover="showTip(event, 'fs17', 20)" class="f">withHealthcheckAt</span> <span class="s">&quot;/livecheck&quot;</span> <span onmouseout="hideTip(event, 'fs9', 21)" onmouseover="showTip(event, 'fs9', 21)" class="i">healthchecks</span>
+</code></pre></td>
+</tr>
+</table>
+
+<p>By using <code>withHealthcheck</code> or <code>withHealthcheckAt</code>, the healthcheck functions will attach as a prefix to <code>myApp</code>.
+This means that if there is any request to the healthcheck endpoint, it will be handled by the healthcheck service. Requests
+to this endpoint that are invalid (such as <code>POST</code>s) will be handled by returning an appropriate response (such as a <code>504 METHOD NOT ALLOWED</code>)
+instead of passing the context to <code>myApp</code>.</p>
+
+<p>In this way, you can choose to attach multiple healthchecks for services hosted by the same instance:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 22)" onmouseover="showTip(event, 'fs18', 22)" class="i">service1Hc</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 23)" onmouseover="showTip(event, 'fs10', 23)" class="t">Map</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 24)" onmouseover="showTip(event, 'fs11', 24)" class="f">ofList</span> [<span class="s">&quot;main&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 25)" onmouseover="showTip(event, 'fs12', 25)" class="t">Checks</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 26)" onmouseover="showTip(event, 'fs13', 26)" class="i">serverMainSwitch</span>; <span class="s">&quot;redis&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 27)" onmouseover="showTip(event, 'fs12', 27)" class="t">Checks</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 28)" onmouseover="showTip(event, 'fs19', 28)" class="f">alwaysHealthy</span>]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs20', 29)" onmouseover="showTip(event, 'fs20', 29)" class="i">service2Hc</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 30)" onmouseover="showTip(event, 'fs10', 30)" class="t">Map</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 31)" onmouseover="showTip(event, 'fs11', 31)" class="f">ofList</span> [<span class="s">&quot;main&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 32)" onmouseover="showTip(event, 'fs12', 32)" class="t">Checks</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 33)" onmouseover="showTip(event, 'fs13', 33)" class="i">serverMainSwitch</span>; <span class="s">&quot;unreliable&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 34)" onmouseover="showTip(event, 'fs12', 34)" class="t">Checks</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs21', 35)" onmouseover="showTip(event, 'fs21', 35)" class="f">alwaysUnhealthy</span>]
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 36)" onmouseover="showTip(event, 'fs22', 36)" class="i">appWithTwoServices</span> <span class="o">=</span>
+  <span onmouseout="hideTip(event, 'fs6', 37)" onmouseover="showTip(event, 'fs6', 37)" class="i">myApp</span>
+  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 38)" onmouseover="showTip(event, 'fs17', 38)" class="f">withHealthcheckAt</span> <span class="s">&quot;/service-1/livecheck&quot;</span> <span onmouseout="hideTip(event, 'fs18', 39)" onmouseover="showTip(event, 'fs18', 39)" class="i">service1Hc</span>
+  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 40)" onmouseover="showTip(event, 'fs17', 40)" class="f">withHealthcheckAt</span> <span class="s">&quot;/service-2/livecheck&quot;</span> <span onmouseout="hideTip(event, 'fs20', 41)" onmouseover="showTip(event, 'fs20', 41)" class="i">service2Hc</span>
+</code></pre></td>
+</tr>
+</table>
+
+<h2><a name="Healthcheck-evaluation" class="anchor" href="#Healthcheck-evaluation">Healthcheck evaluation</a></h2>
+
+<p>When a healthcheck is evaluated it will return a result indicating the current health of the service:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 42)" onmouseover="showTip(event, 'fs23', 42)" class="i">evaluateHc</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs24', 43)" onmouseover="showTip(event, 'fs24', 43)" class="f">evaluateHealthcheck</span> <span onmouseout="hideTip(event, 'fs12', 44)" onmouseover="showTip(event, 'fs12', 44)" class="t">Checks</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 45)" onmouseover="showTip(event, 'fs13', 45)" class="i">serverMainSwitch</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs25', 46)" onmouseover="showTip(event, 'fs25', 46)" class="i">result</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 47)" onmouseover="showTip(event, 'fs23', 47)" class="i">evaluateHc</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs26', 48)" onmouseover="showTip(event, 'fs26', 48)" class="t">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 49)" onmouseover="showTip(event, 'fs27', 49)" class="f">RunSynchronously</span>
+</code></pre></td>
+</tr>
+</table>
+
+<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-11T03:07:34Z;
+ Duration = 0:00:00:00.0018634;
+ Result = {Status = Healthy;
+           Message = null;};}</code></pre></td></tr></table>
+
+<p>If we then disable the main server switch and re-evaluate the healthcheck that check will now evaluate to <code>Unhealthy</code>.</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs28', 50)" onmouseover="showTip(event, 'fs28', 50)" class="t">HealthSwitch</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs29', 51)" onmouseover="showTip(event, 'fs29', 51)" class="f">disable</span> <span onmouseout="hideTip(event, 'fs28', 52)" onmouseover="showTip(event, 'fs28', 52)" class="t">HealthSwitch</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs30', 53)" onmouseover="showTip(event, 'fs30', 53)" class="i">serverMain</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 54)" onmouseover="showTip(event, 'fs31', 54)" class="i">newResult</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 55)" onmouseover="showTip(event, 'fs23', 55)" class="i">evaluateHc</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs26', 56)" onmouseover="showTip(event, 'fs26', 56)" class="t">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 57)" onmouseover="showTip(event, 'fs27', 57)" class="f">RunSynchronously</span>
+</code></pre></td>
+</tr>
+</table>
+
+<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-11T03:07:34Z;
+ Duration = 0:00:00:00.0000019;
+ Result = {Status = Unhealthy;
+           Message = Some "Server manually disabled";};}</code></pre></td></tr></table>
+
+<p>The evaluation of a set of healthchecks together creates an aggregate healthcheck result:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 62)" onmouseover="showTip(event, 'fs33', 62)" class="i">evaluateHcs</span> <span class="o">=</span>
+  <span onmouseout="hideTip(event, 'fs10', 63)" onmouseover="showTip(event, 'fs10', 63)" class="t">Map</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 64)" onmouseover="showTip(event, 'fs11', 64)" class="f">ofList</span>
+    [ <span class="s">&quot;main&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 65)" onmouseover="showTip(event, 'fs12', 65)" class="t">Checks</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 66)" onmouseover="showTip(event, 'fs13', 66)" class="i">serverMainSwitch</span>
+      <span class="s">&quot;redis&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 67)" onmouseover="showTip(event, 'fs12', 67)" class="t">Checks</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 68)" onmouseover="showTip(event, 'fs19', 68)" class="f">alwaysHealthy</span>
+      <span class="s">&quot;unreliable&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 69)" onmouseover="showTip(event, 'fs12', 69)" class="t">Checks</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs21', 70)" onmouseover="showTip(event, 'fs21', 70)" class="f">alwaysUnhealthy</span> ]
+  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs34', 71)" onmouseover="showTip(event, 'fs34', 71)" class="f">evaluateHealthchecks</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 72)" onmouseover="showTip(event, 'fs35', 72)" class="i">aggregateResult</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 73)" onmouseover="showTip(event, 'fs33', 73)" class="i">evaluateHcs</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs26', 74)" onmouseover="showTip(event, 'fs26', 74)" class="t">Async</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 75)" onmouseover="showTip(event, 'fs27', 75)" class="f">RunSynchronously</span>
+</code></pre></td>
+</tr>
+</table>
+
+<table class="pre"><tr><td><pre><code>{GenerationTime = 2015-10-11T03:07:34Z;
+ Duration = 0:00:00:00.0028388;
+ Checks =
+  map
+    [("main", {TestedAt = 2015-10-11T03:07:34Z;
+               Duration = 0:00:00:00.0000026;
+               Result = {Status = Healthy;
+                         Message = null;};});
+     ("redis", {TestedAt = 2015-10-11T03:07:34Z;
+                Duration = 0:00:00:00.0001448;
+                Result = {Status = Healthy;
+                          Message = null;};});
+     ("unreliable", {TestedAt = 2015-10-11T03:07:34Z;
+                     Duration = 0:00:00:00.0002216;
+                     Result = {Status = Unhealthy;
+                               Message = Some "Server disabled";};})];}</code></pre></td></tr></table>
+
+<p>This result gets serialized to JSON and returned to the client with the appropriate HTTP status</p>
+
+<table class="pre"><tr><td><pre><code>"{"duration_millis":2.8,"generated_at":"2015-10-11T03:07:34.538Z","tests":{"main":{"duration_millis":0,"result":"passed","tested_at":"2015-10-11T03:07:34.536Z"},"redis":{"duration_millis":0.1,"result":"passed","tested_at":"2015-10-11T03:07:34.537Z"},"unreliable":{"duration_millis":0.2,"message":"Server disabled","result":"failed","tested_at":"2015-10-11T03:07:34.537Z"}}}"</code></pre></td></tr></table>
+
 <div class="tip" id="fs1">namespace Suave</div>
-<div class="tip" id="fs2">module Types<br /><br />from Suave</div>
+<div class="tip" id="fs2">module Http<br /><br />from Suave</div>
 <div class="tip" id="fs3">namespace Cimfu</div>
 <div class="tip" id="fs4">namespace Cimfu.Suave</div>
 <div class="tip" id="fs5">module Healthcheck<br /><br />from Cimfu.Suave</div>
-<div class="tip" id="fs6">val myApp : WebPart<br /><br />Full name: Tutorial.myApp</div>
-<div class="tip" id="fs7">type WebPart = HttpContext -&gt; Async&lt;HttpContext option&gt;<br /><br />Full name: Suave.Types.WebPart</div>
-<div class="tip" id="fs8">module Http<br /><br />from Suave</div>
-<div class="tip" id="fs9">module RequestErrors<br /><br />from Suave.Http</div>
-<div class="tip" id="fs10">val NOT_FOUND : message:string -&gt; WebPart<br /><br />Full name: Suave.Http.RequestErrors.NOT_FOUND</div>
-<div class="tip" id="fs11">val healthchecks : Map&lt;string,Healthcheck&gt;<br /><br />Full name: Tutorial.healthchecks</div>
-<div class="tip" id="fs12">Multiple items<br />module Map<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type Map&lt;&#39;Key,&#39;Value (requires comparison)&gt; =<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IComparable<br />&#160;&#160;interface IEnumerable&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;<br />&#160;&#160;interface ICollection&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;<br />&#160;&#160;interface IDictionary&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;new : elements:seq&lt;&#39;Key * &#39;Value&gt; -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;member Add : key:&#39;Key * value:&#39;Value -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;member ContainsKey : key:&#39;Key -&gt; bool<br />&#160;&#160;override Equals : obj -&gt; bool<br />&#160;&#160;member Remove : key:&#39;Key -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;...<br /><br />Full name: Microsoft.FSharp.Collections.Map&lt;_,_&gt;<br /><br />--------------------<br />new : elements:seq&lt;&#39;Key * &#39;Value&gt; -&gt; Map&lt;&#39;Key,&#39;Value&gt;</div>
-<div class="tip" id="fs13">val ofList : elements:(&#39;Key * &#39;T) list -&gt; Map&lt;&#39;Key,&#39;T&gt; (requires comparison)<br /><br />Full name: Microsoft.FSharp.Collections.Map.ofList</div>
-<div class="tip" id="fs14">module Checks<br /><br />from Cimfu.Suave.Healthcheck</div>
-<div class="tip" id="fs15">val app : WebPart<br /><br />Full name: Tutorial.app</div>
-<div class="tip" id="fs16">val withHealthcheck : hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:WebPart -&gt; WebPart<br /><br />Full name: Cimfu.Suave.Healthcheck.withHealthcheck</div>
+<div class="tip" id="fs6">val myApp : Suave.Types.WebPart<br /><br />Full name: Tutorial.myApp</div>
+<div class="tip" id="fs7">module RequestErrors<br /><br />from Suave.Http</div>
+<div class="tip" id="fs8">val NOT_FOUND : message:string -&gt; Suave.Types.WebPart<br /><br />Full name: Suave.Http.RequestErrors.NOT_FOUND</div>
+<div class="tip" id="fs9">val healthchecks : Map&lt;string,Healthcheck&gt;<br /><br />Full name: Tutorial.healthchecks</div>
+<div class="tip" id="fs10">Multiple items<br />module Map<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type Map&lt;&#39;Key,&#39;Value (requires comparison)&gt; =<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IComparable<br />&#160;&#160;interface IEnumerable&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;<br />&#160;&#160;interface ICollection&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;<br />&#160;&#160;interface IDictionary&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;new : elements:seq&lt;&#39;Key * &#39;Value&gt; -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;member Add : key:&#39;Key * value:&#39;Value -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;member ContainsKey : key:&#39;Key -&gt; bool<br />&#160;&#160;override Equals : obj -&gt; bool<br />&#160;&#160;member Remove : key:&#39;Key -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;...<br /><br />Full name: Microsoft.FSharp.Collections.Map&lt;_,_&gt;<br /><br />--------------------<br />new : elements:seq&lt;&#39;Key * &#39;Value&gt; -&gt; Map&lt;&#39;Key,&#39;Value&gt;</div>
+<div class="tip" id="fs11">val ofList : elements:(&#39;Key * &#39;T) list -&gt; Map&lt;&#39;Key,&#39;T&gt; (requires comparison)<br /><br />Full name: Microsoft.FSharp.Collections.Map.ofList</div>
+<div class="tip" id="fs12">module Checks<br /><br />from Cimfu.Suave.Healthcheck</div>
+<div class="tip" id="fs13">val serverMainSwitch : Healthcheck<br /><br />Full name: Cimfu.Suave.Healthcheck.Checks.serverMainSwitch</div>
+<div class="tip" id="fs14">val app : Suave.Types.WebPart<br /><br />Full name: Tutorial.app</div>
+<div class="tip" id="fs15">val withHealthcheck : hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:Suave.Types.WebPart -&gt; Suave.Types.WebPart<br /><br />Full name: Cimfu.Suave.Healthcheck.withHealthcheck</div>
+<div class="tip" id="fs16">val appAtAltAddress : Suave.Types.WebPart<br /><br />Full name: Tutorial.appAtAltAddress</div>
+<div class="tip" id="fs17">val withHealthcheckAt : rootPath:string -&gt; hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:Suave.Types.WebPart -&gt; Suave.Types.WebPart<br /><br />Full name: Cimfu.Suave.Healthcheck.withHealthcheckAt</div>
+<div class="tip" id="fs18">val service1Hc : Map&lt;string,Healthcheck&gt;<br /><br />Full name: Tutorial.service1Hc</div>
+<div class="tip" id="fs19">val alwaysHealthy : unit -&gt; Async&lt;HealthcheckResult&gt;<br /><br />Full name: Cimfu.Suave.Healthcheck.Checks.alwaysHealthy</div>
+<div class="tip" id="fs20">val service2Hc : Map&lt;string,Healthcheck&gt;<br /><br />Full name: Tutorial.service2Hc</div>
+<div class="tip" id="fs21">val alwaysUnhealthy : unit -&gt; Async&lt;HealthcheckResult&gt;<br /><br />Full name: Cimfu.Suave.Healthcheck.Checks.alwaysUnhealthy</div>
+<div class="tip" id="fs22">val appWithTwoServices : Suave.Types.WebPart<br /><br />Full name: Tutorial.appWithTwoServices</div>
+<div class="tip" id="fs23">val evaluateHc : Async&lt;Internal.HealthcheckData&gt;<br /><br />Full name: Tutorial.evaluateHc</div>
+<div class="tip" id="fs24">val evaluateHealthcheck : hc:Healthcheck -&gt; Async&lt;Internal.HealthcheckData&gt;<br /><br />Full name: Cimfu.Suave.Healthcheck.evaluateHealthcheck</div>
+<div class="tip" id="fs25">val result : Internal.HealthcheckData<br /><br />Full name: Tutorial.result</div>
+<div class="tip" id="fs26">Multiple items<br />type Async<br />static member AsBeginEnd : computation:(&#39;Arg -&gt; Async&lt;&#39;T&gt;) -&gt; (&#39;Arg * AsyncCallback * obj -&gt; IAsyncResult) * (IAsyncResult -&gt; &#39;T) * (IAsyncResult -&gt; unit)<br />static member AwaitEvent : event:IEvent&lt;&#39;Del,&#39;T&gt; * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt; (requires delegate and &#39;Del :&gt; Delegate)<br />static member AwaitIAsyncResult : iar:IAsyncResult * ?millisecondsTimeout:int -&gt; Async&lt;bool&gt;<br />static member AwaitTask : task:Task -&gt; Async&lt;unit&gt;<br />static member AwaitTask : task:Task&lt;&#39;T&gt; -&gt; Async&lt;&#39;T&gt;<br />static member AwaitWaitHandle : waitHandle:WaitHandle * ?millisecondsTimeout:int -&gt; Async&lt;bool&gt;<br />static member CancelDefaultToken : unit -&gt; unit<br />static member Catch : computation:Async&lt;&#39;T&gt; -&gt; Async&lt;Choice&lt;&#39;T,exn&gt;&gt;<br />static member FromBeginEnd : beginAction:(AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromBeginEnd : arg:&#39;Arg1 * beginAction:(&#39;Arg1 * AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromBeginEnd : arg1:&#39;Arg1 * arg2:&#39;Arg2 * beginAction:(&#39;Arg1 * &#39;Arg2 * AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromBeginEnd : arg1:&#39;Arg1 * arg2:&#39;Arg2 * arg3:&#39;Arg3 * beginAction:(&#39;Arg1 * &#39;Arg2 * &#39;Arg3 * AsyncCallback * obj -&gt; IAsyncResult) * endAction:(IAsyncResult -&gt; &#39;T) * ?cancelAction:(unit -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member FromContinuations : callback:((&#39;T -&gt; unit) * (exn -&gt; unit) * (OperationCanceledException -&gt; unit) -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member Ignore : computation:Async&lt;&#39;T&gt; -&gt; Async&lt;unit&gt;<br />static member OnCancel : interruption:(unit -&gt; unit) -&gt; Async&lt;IDisposable&gt;<br />static member Parallel : computations:seq&lt;Async&lt;&#39;T&gt;&gt; -&gt; Async&lt;&#39;T []&gt;<br />static member RunSynchronously : computation:Async&lt;&#39;T&gt; * ?timeout:int * ?cancellationToken:CancellationToken -&gt; &#39;T<br />static member Sleep : millisecondsDueTime:int -&gt; Async&lt;unit&gt;<br />static member Start : computation:Async&lt;unit&gt; * ?cancellationToken:CancellationToken -&gt; unit<br />static member StartAsTask : computation:Async&lt;&#39;T&gt; * ?taskCreationOptions:TaskCreationOptions * ?cancellationToken:CancellationToken -&gt; Task&lt;&#39;T&gt;<br />static member StartChild : computation:Async&lt;&#39;T&gt; * ?millisecondsTimeout:int -&gt; Async&lt;Async&lt;&#39;T&gt;&gt;<br />static member StartChildAsTask : computation:Async&lt;&#39;T&gt; * ?taskCreationOptions:TaskCreationOptions -&gt; Async&lt;Task&lt;&#39;T&gt;&gt;<br />static member StartImmediate : computation:Async&lt;unit&gt; * ?cancellationToken:CancellationToken -&gt; unit<br />static member StartWithContinuations : computation:Async&lt;&#39;T&gt; * continuation:(&#39;T -&gt; unit) * exceptionContinuation:(exn -&gt; unit) * cancellationContinuation:(OperationCanceledException -&gt; unit) * ?cancellationToken:CancellationToken -&gt; unit<br />static member SwitchToContext : syncContext:SynchronizationContext -&gt; Async&lt;unit&gt;<br />static member SwitchToNewThread : unit -&gt; Async&lt;unit&gt;<br />static member SwitchToThreadPool : unit -&gt; Async&lt;unit&gt;<br />static member TryCancelled : computation:Async&lt;&#39;T&gt; * compensation:(OperationCanceledException -&gt; unit) -&gt; Async&lt;&#39;T&gt;<br />static member CancellationToken : Async&lt;CancellationToken&gt;<br />static member DefaultCancellationToken : CancellationToken<br /><br />Full name: Microsoft.FSharp.Control.Async<br /><br />--------------------<br />type Async&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Control.Async&lt;_&gt;</div>
+<div class="tip" id="fs27">static member Async.RunSynchronously : computation:Async&lt;&#39;T&gt; * ?timeout:int * ?cancellationToken:System.Threading.CancellationToken -&gt; &#39;T</div>
+<div class="tip" id="fs28">Multiple items<br />module HealthSwitch<br /><br />from Cimfu.Suave.Healthcheck<br /><br />--------------------<br />type HealthSwitch =<br />&#160;&#160;private {Enable: unit -&gt; unit;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Disable: unit -&gt; unit;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Check: Healthcheck;}<br /><br />Full name: Cimfu.Suave.Healthcheck.HealthSwitch</div>
+<div class="tip" id="fs29">val disable : hs:HealthSwitch -&gt; unit<br /><br />Full name: Cimfu.Suave.Healthcheck.HealthSwitch.disable</div>
+<div class="tip" id="fs30">val serverMain : HealthSwitch<br /><br />Full name: Cimfu.Suave.Healthcheck.HealthSwitch.serverMain</div>
+<div class="tip" id="fs31">val newResult : Internal.HealthcheckData<br /><br />Full name: Tutorial.newResult</div>
+<div class="tip" id="fs32">val enable : hs:HealthSwitch -&gt; unit<br /><br />Full name: Cimfu.Suave.Healthcheck.HealthSwitch.enable</div>
+<div class="tip" id="fs33">val evaluateHcs : Async&lt;Internal.AggregateHealthcheckResult&gt;<br /><br />Full name: Tutorial.evaluateHcs</div>
+<div class="tip" id="fs34">val evaluateHealthchecks : hcMap:Map&lt;string,Healthcheck&gt; -&gt; Async&lt;Internal.AggregateHealthcheckResult&gt;<br /><br />Full name: Cimfu.Suave.Healthcheck.evaluateHealthchecks</div>
+<div class="tip" id="fs35">val aggregateResult : Internal.AggregateHealthcheckResult<br /><br />Full name: Tutorial.aggregateResult</div>
+<div class="tip" id="fs36">module Chiron</div>
+<div class="tip" id="fs37">val serializedResult : string<br /><br />Full name: Tutorial.serializedResult</div>
+<div class="tip" id="fs38">Multiple items<br />module Json<br /><br />from Chiron.Mapping<br /><br />--------------------<br />module Json<br /><br />from Chiron.Formatting<br /><br />--------------------<br />module Json<br /><br />from Chiron.Parsing<br /><br />--------------------<br />module Json<br /><br />from Chiron.Lens<br /><br />--------------------<br />module Json<br /><br />from Chiron.Functional<br /><br />--------------------<br />type Json =<br />&#160;&#160;| Array of Json list<br />&#160;&#160;| Bool of bool<br />&#160;&#160;| Null of unit<br />&#160;&#160;| Number of decimal<br />&#160;&#160;| Object of Map&lt;string,Json&gt;<br />&#160;&#160;| String of string<br />&#160;&#160;static member Array_ : PLens&lt;Json,Json list&gt;<br />&#160;&#160;static member private Array__ : (Json -&gt; Json list option) * (Json list -&gt; Json)<br />&#160;&#160;static member Bool_ : PLens&lt;Json,bool&gt;<br />&#160;&#160;static member private Bool__ : (Json -&gt; bool option) * (bool -&gt; Json)<br />&#160;&#160;static member Null_ : PLens&lt;Json,unit&gt;<br />&#160;&#160;static member private Null__ : (Json -&gt; unit option) * (unit -&gt; Json)<br />&#160;&#160;static member Number_ : PLens&lt;Json,decimal&gt;<br />&#160;&#160;static member private Number__ : (Json -&gt; decimal option) * (decimal -&gt; Json)<br />&#160;&#160;static member Object_ : PLens&lt;Json,Map&lt;string,Json&gt;&gt;<br />&#160;&#160;static member private Object__ : (Json -&gt; Map&lt;string,Json&gt; option) * (Map&lt;string,Json&gt; -&gt; Json)<br />&#160;&#160;static member String_ : PLens&lt;Json,string&gt;<br />&#160;&#160;static member private String__ : (Json -&gt; string option) * (string -&gt; Json)<br /><br />Full name: Chiron.Json<br /><br />--------------------<br />type Json&lt;&#39;a&gt; = Json -&gt; JsonResult&lt;&#39;a&gt; * Json<br /><br />Full name: Chiron.Functional.Json&lt;_&gt;</div>
+<div class="tip" id="fs39">val serialize : a:&#39;a -&gt; Json (requires member ToJson)<br /><br />Full name: Chiron.Mapping.Json.serialize</div>
+<div class="tip" id="fs40">val format : json:Json -&gt; string<br /><br />Full name: Chiron.Formatting.Json.format</div>
 
         </div>
         <div class="span3">
@@ -98,10 +222,10 @@
             <li><a href="/Cimfu.Suave.Healthcheck/release-notes.html">Release Notes</a></li>
             
             <li class="nav-header">Getting started</li>
-            <li><a href="/Cimfu.Suave.Healthcheck/tutorial.html">Sample tutorial</a></li>
+            <li><a href="/Cimfu.Suave.Healthcheck/tutorial.html">Tutorial</a></li>
 
             <li class="nav-header">Documentation</li>
-            <li><a href="/Cimfu.Suave.Healthcheck/reference/index.html">API Reference</a></li>
+            <li><a href="/Cimfu.Suave.Healthcheck/reference/cimfu-suave-healthcheck.html">API Reference</a></li>
           </ul>
         </div>
       </div>
