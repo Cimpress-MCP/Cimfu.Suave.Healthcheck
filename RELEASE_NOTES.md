@@ -1,3 +1,6 @@
+#### 0.2.1
+* Fix deserialization of aggregated health check
+
 #### 0.2.0
 * Rewrite healthcheck evaluations to allow out-of-band checks
 * Provide a utility function to easily time healthcheck evaluations
