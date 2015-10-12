@@ -9,6 +9,7 @@ open Suave.Http.Applicatives
 open Suave.Http.Writers
 open NodaTime
 
+/// Timing module. Used to provide values for test duration and time of tests.
 module Timing =
   /// Represents one stopwatch timestamp (as reported by `System.Diagnostics.Stopwatch`).
   type [<Measure>] stamp
@@ -287,8 +288,8 @@ module Internal =
 
   /// Asynchronously maps a `HealthEvaluator` and to a `HealthcheckResult`
   /// using the timing settings from `tsSettings`.
-  let evaluateToHealthcheckWith tsSettings (he : HealthEvaluator) =
-    async {
+  let evaluateToHealthcheckWith tsSettings (he : HealthEvaluator) : Healthcheck =
+    fun () -> async {
       let startTime = tsSettings.GetTimestamp ()
       let! (HealthStatus (health, msg)) = he ()
       let testTime = tsSettings.GetTime ()
