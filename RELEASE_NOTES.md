@@ -1,3 +1,10 @@
+#### 0.2.0
+* Rewrite healthcheck evaluations to allow out-of-band checks
+* Provide a utility function to easily time healthcheck evaluations
+* Reorganize modules to fit this alternate evaluation path
+* Add WebPart to allow more customized integration with existing Suave apps
+* Rewrite HealthSwitch functionality as a class to encapsulate mutation
+
 #### 0.1.0
 * Allow specifying a custom healthcheck endpoint
 * Add XML documentation
