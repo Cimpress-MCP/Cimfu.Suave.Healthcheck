@@ -29,17 +29,18 @@ This example demonstrates attaching the main server switch healthcheck to a Suav
 
 *)
 #r "Suave.dll"
+#r "NodaTime.dll"
 #r "Cimfu.Suave.Healthcheck.dll"
 open Suave.Http
 open Cimfu.Suave.Healthcheck
 
 let myApp = RequestErrors.NOT_FOUND "Not here"
 
-let healthchecks = Map.ofList ["main", Checks.serverMainSwitch]
+let hcMap = Map.ofList ["main", Checks.serverMain]
 
 let app =
   myApp
-  |> withHealthcheck healthchecks
+  |> prefixWithHealthcheck hcMap
 
 (**
 

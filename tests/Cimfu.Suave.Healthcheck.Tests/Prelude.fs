@@ -2,6 +2,7 @@
 module private Prelude
 
 open Cimfu.Suave.Healthcheck
+open Cimfu.Suave.Healthcheck.Timing
 open Cimfu.Suave.Healthcheck.Internal
 open NodaTime
 
@@ -15,17 +16,15 @@ let testDefaultAggregate =
     Duration = Duration.Zero
     Checks = Map.empty }
 
-let testDefaultHealthyData =
+let testDefaultHealthyData msg =
   { TestedAt = Instant 0L
     Duration = Duration.Zero
-    Result = HealthcheckResult.Healthy }
+    Health = Healthy
+    Message = msg }
 
 let testDefaultUnhealthyData msg =
-  { testDefaultHealthyData with
-      Result = { Status = Unhealthy; Message = msg } }
-
-let testEvaluateHealthcheck =
-  evaluateHealthcheckWith testTimingSettings
+  { testDefaultHealthyData msg with
+      Health = Unhealthy }
 
 let testEvaluateHealthchecks =
-  evaluateHealthchecksWith testTimingSettings testEvaluateHealthcheck
+  evaluateHealthchecksWith testTimingSettings
