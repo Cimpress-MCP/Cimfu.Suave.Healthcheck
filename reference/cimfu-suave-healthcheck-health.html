@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>AggregateHealthcheckResult - Cimfu.Suave.Healthcheck</title>
+    <title>Health - Cimfu.Suave.Healthcheck</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="Marcus Griep"/>
@@ -35,38 +35,38 @@
 
 
 
-<h1>AggregateHealthcheckResult</h1>
+<h1>Health</h1>
 <p>
   <span>Namespace: Cimfu.Suave</span><br />
-  <span>Parent Module: <a href="cimfu-suave-healthcheck-internal.html">Internal</a></span>
+  <span>Parent Module: <a href="cimfu-suave-healthcheck.html">Healthcheck</a></span>
 </p>
 <div class="xmldoc">
-<p>Represents an aggregate result of several evaluated healthchecks.</p>
+<p>Represents the health of a service.</p>
 
 
 </div>
-  <h3>Record Fields</h3>
+  <h3>Union Cases</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Record Field</td><td>Description</td></tr>
+      <tr><td>Union Case</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '43', 43)" onmouseover="showTip(event, '43', 43)">
-            Checks
+          <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
+            Healthy
           </code>
-          <div class="tip" id="43">
-            <strong>Signature:</strong> Map&lt;string,HealthcheckResult&gt;<br />
+          <div class="tip" id="21">
+            <strong>Signature:</strong> <br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L214-214" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L101-101" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>A map of healthcheck results by their configured key.</p>
+          <p>Indicates that the healthcheck has passed.</p>
 
 
 
@@ -75,40 +75,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '44', 44)" onmouseover="showTip(event, '44', 44)">
-            Duration
+          <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
+            Unhealthy
           </code>
-          <div class="tip" id="44">
-            <strong>Signature:</strong> Duration<br />
+          <div class="tip" id="22">
+            <strong>Signature:</strong> <br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L212-212" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L103-103" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>The duration required to evaluate the aggregated healthchecks.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '45', 45)" onmouseover="showTip(event, '45', 45)">
-            GenerationTime
-          </code>
-          <div class="tip" id="45">
-            <strong>Signature:</strong> Instant<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L210-210" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>The time at which all healthchecks completed and were aggregated.</p>
+          <p>Indicates that the healthcheck has failed and that the service should be marked unhealthy.</p>
 
 
 
@@ -125,19 +104,21 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '46', 46)" onmouseover="showTip(event, '46', 46)">
-            FromJson(arg1)
+          <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
+            ( + )(l, r)
           </code>
-          <div class="tip" id="46">
-            <strong>Signature:</strong> AggregateHealthcheckResult -&gt; Json&lt;AggregateHealthcheckResult&gt;<br />
+          <div class="tip" id="23">
+            <strong>Signature:</strong> (l:Health * r:Health) -&gt; Health<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L224-224" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L107-107" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Deserializes an <code>AggregateHealthcheckResult</code> from a <code>Chiron.Json</code>.</p>
+          <p>Adds together two health values such that the result
+will be <code>Healthy</code> if and only if both operands are <code>Healthy</code>.
+Otherwise the result will be <code>Unhealthy</code>.</p>
 
 
 
@@ -146,19 +127,40 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '47', 47)" onmouseover="showTip(event, '47', 47)">
-            ToJson(x)
+          <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
+            FromJson(arg1)
           </code>
-          <div class="tip" id="47">
-            <strong>Signature:</strong> x:AggregateHealthcheckResult -&gt; Json&lt;unit&gt;<br />
+          <div class="tip" id="24">
+            <strong>Signature:</strong> Health -&gt; Json -&gt; JsonResult&lt;Health&gt; * Json<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L218-218" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L145-145" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Serializes an <code>AggregateHealthcheckResult</code> to a <code>Chiron.Json</code>.</p>
+          <p>Deserializes a <code>Health</code> from a <code>Chiron.Json</code>.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
+            ToJson(x)
+          </code>
+          <div class="tip" id="25">
+            <strong>Signature:</strong> x:Health -&gt; Json&lt;unit&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L139-139" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Serializes a <code>Health</code> to a <code>Chiron.Json</code>.</p>
 
 
 

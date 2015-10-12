@@ -63,60 +63,6 @@
 
 </td>
         </tr>
-        <tr>
-          <td class="type-name">
-            <a href="cimfu-suave-healthcheck-internal-healthcheckdata.html">HealthcheckData</a>
-          </td>
-          <td class="xmldoc"><p>Represents the context of an evaluated healthcheck.</p>
-
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="cimfu-suave-healthcheck-internal-timingsettings.html">TimingSettings</a>
-          </td>
-          <td class="xmldoc"><p>Timing information. Specifying custom values is helpful for testing purposes.</p>
-
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="cimfu-suave-healthcheck-internal-ms.html">ms</a>
-          </td>
-          <td class="xmldoc"><p>Represents one millisecond.</p>
-
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="cimfu-suave-healthcheck-internal-sec.html">sec</a>
-          </td>
-          <td class="xmldoc"><p>Represents one second.</p>
-
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="cimfu-suave-healthcheck-internal-stamp.html">stamp</a>
-          </td>
-          <td class="xmldoc"><p>Represents one stopwatch timestamp (as reported by <code>System.Diagnostics.Stopwatch</code>).</p>
-
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="cimfu-suave-healthcheck-internal-tick.html">tick</a>
-          </td>
-          <td class="xmldoc"><p>Represents one clock tick (as reported by <code>NodaTime</code>).</p>
-
-
-</td>
-        </tr>
     </tbody>
   </table>
 
@@ -132,14 +78,36 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
-            doHealthcheckWith (...)
+            allowGetOrHeadOnly app
           </code>
           <div class="tip" id="14">
-            <strong>Signature:</strong> evaluateHealthchecks:(&#39;?7243 -&gt; Async&lt;AggregateHealthcheckResult&gt;) -&gt; healthchecks:&#39;?7243 -&gt; WebPart<br />
-                          <strong>Type parameters:</strong> '?7243          </div>
+            <strong>Signature:</strong> app:WebPart -&gt; WebPart<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L271-271" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L272-272" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Only allows GET or HEAD requests to be passed on to <code>app</code>. Handles all
+other requests by responding with <code>405 METHOD NOT ALLOWED</code>.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
+            doHealthcheckWith (...)
+          </code>
+          <div class="tip" id="15">
+            <strong>Signature:</strong> getResults:(&#39;?7278 -&gt; Async&lt;AggregateHealthcheckResult&gt;) -&gt; healthchecks:&#39;?7278 -&gt; ctx:HttpContext -&gt; Async&lt;HttpContext option&gt;<br />
+                          <strong>Type parameters:</strong> '?7278          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L254-254" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -153,15 +121,15 @@ the specified evaluator.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
+          <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
             evaluateHealthchecksWith (...)
           </code>
-          <div class="tip" id="15">
-            <strong>Signature:</strong> tsSettings:TimingSettings -&gt; evaluateHealthcheck:(&#39;?7241 -&gt; Async&lt;HealthcheckData&gt;) -&gt; hcMap:Map&lt;string,&#39;?7241&gt; -&gt; Async&lt;AggregateHealthcheckResult&gt;<br />
-                          <strong>Type parameters:</strong> '?7241          </div>
+          <div class="tip" id="16">
+            <strong>Signature:</strong> tsSettings:TimingSettings -&gt; hcMap:Map&lt;string,Healthcheck&gt; -&gt; Async&lt;AggregateHealthcheckResult&gt;<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L256-256" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L239-239" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -175,36 +143,15 @@ timing settings and healthcheck evaluator.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
-            evaluateHealthcheckWith tsSettings hc
-          </code>
-          <div class="tip" id="16">
-            <strong>Signature:</strong> tsSettings:TimingSettings -&gt; hc:Healthcheck -&gt; Async&lt;HealthcheckData&gt;<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L235-235" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Asynchronously evaluates a healthcheck with the specified timing settings.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
           <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
-            evaluateMappedHealthcheck (...)
+            evaluateMappedHealthcheck (k, hc)
           </code>
           <div class="tip" id="17">
-            <strong>Signature:</strong> evaluateHealthcheck:(&#39;?7237 -&gt; Async&lt;&#39;?7238&gt;) -&gt; (k:&#39;?7239 * v:&#39;?7237) -&gt; Async&lt;&#39;?7239 * &#39;?7238&gt;<br />
-                          <strong>Type parameters:</strong> '?7237, '?7238, '?7239          </div>
+            <strong>Signature:</strong> (k:&#39;?7275 * hc:Healthcheck) -&gt; Async&lt;&#39;?7275 * HealthcheckResult&gt;<br />
+                          <strong>Type parameters:</strong> '?7275          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L248-248" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L231-231" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -218,22 +165,63 @@ timing settings and healthcheck evaluator.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
-            withHealthcheckWith (...)
+            evaluateToHealthcheckWith tsSettings he
           </code>
           <div class="tip" id="18">
-            <strong>Signature:</strong> doHealthcheckWith:(&#39;?7245 -&gt; HttpContext -&gt; Async&lt;HttpContext option&gt;) -&gt; rootPath:string -&gt; healthchecks:&#39;?7245 -&gt; app:WebPart -&gt; WebPart<br />
-                          <strong>Type parameters:</strong> '?7245          </div>
+            <strong>Signature:</strong> tsSettings:TimingSettings -&gt; he:HealthEvaluator -&gt; Async&lt;HealthcheckResult&gt;<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L293-293" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L291-291" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Attaches a healthcheck endpoint as a prefix to a <code>Suave</code> <code>WebPart</code>
-handling all requests beginning with <code>rootPath</code>. Healthchecks are
-evaluated using <code>doHealthcheckWith</code>.</p>
+          <p>Asynchronously maps a <code>HealthEvaluator</code> and to a <code>HealthcheckResult</code>
+using the timing settings from <code>tsSettings</code>.</p>
 
-<p>An <code>app</code> may be fluently pipelined into this function.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
+            handleHealthcheckWith (...)
+          </code>
+          <div class="tip" id="19">
+            <strong>Signature:</strong> healthcheckHandler:WebPart -&gt; healthcheckRoot:string -&gt; WebPart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L286-286" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Handles healthcheck requests to the <code>healthcheckRoot</code> with the specified
+<code>healthcheckHandler</code></p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
+            healthcheckHandler (...)
+          </code>
+          <div class="tip" id="20">
+            <strong>Signature:</strong> doHealthcheckWith:(&#39;?7281 -&gt; HttpContext -&gt; Async&lt;HttpContext option&gt;) -&gt; hcMap:&#39;?7281 -&gt; WebPart<br />
+                          <strong>Type parameters:</strong> '?7281          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L279-279" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Evaluates the healthchecks specified in <code>hcMap</code> and attaches the appropriate
+headers onto the response.</p>
 
 
 

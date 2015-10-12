@@ -55,6 +55,35 @@
     <tbody>
         <tr>
           <td class="type-name">
+            <a href="cimfu-suave-healthcheck-health.html">Health</a>
+          </td>
+          <td class="xmldoc"><p>Represents the health of a service.</p>
+
+
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="cimfu-suave-healthcheck-healthevaluator.html">HealthEvaluator</a>
+          </td>
+          <td class="xmldoc"><p>The function signature for a health evaluator: <code>unit -&gt; Async&lt;HealthStatus&gt;</code>.
+Conversion of a <code>HealthEvaluator</code> to a <code>Healthcheck</code> can be done by
+using the <code>evaluateToHealthcheck</code> function.</p>
+
+
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="cimfu-suave-healthcheck-healthstatus.html">HealthStatus</a>
+          </td>
+          <td class="xmldoc"><p>Represents a health status without any timing context.</p>
+
+
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
             <a href="cimfu-suave-healthcheck-healthswitch.html">HealthSwitch</a>
           </td>
           <td class="xmldoc"><p>A switch associated with a healthcheck which can be set to
@@ -76,17 +105,8 @@ return <code>Healthy</code> when enabled and <code>Unhealthy</code> when disable
           <td class="type-name">
             <a href="cimfu-suave-healthcheck-healthcheckresult.html">HealthcheckResult</a>
           </td>
-          <td class="xmldoc"><p>The result of running a healthcheck; combines a <code>HealthcheckStatus</code> with
+          <td class="xmldoc"><p>The result of running a healthcheck; combines a <code>Health</code> with
 an optional status message.</p>
-
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="cimfu-suave-healthcheck-healthcheckstatus.html">HealthcheckStatus</a>
-          </td>
-          <td class="xmldoc"><p>A status representing the success or failure of a particular healthcheck.</p>
 
 
 </td>
@@ -109,21 +129,18 @@ an optional status message.</p>
         </tr>
         <tr>
           <td class="module-name">
-            <a href="cimfu-suave-healthcheck-healthswitchmodule.html">HealthSwitch</a>
-          </td>
-          <td class="xmldoc"><p>A set of functions for operating with the <code>HealthSwitch</code> type.</p>
-
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
             <a href="cimfu-suave-healthcheck-internal.html">Internal</a>
           </td>
           <td class="xmldoc"><p>Several internal functions that are not commonly used by consumers of this library.</p>
 
 
 </td>
+        </tr>
+        <tr>
+          <td class="module-name">
+            <a href="cimfu-suave-healthcheck-timing.html">Timing</a>
+          </td>
+          <td class="xmldoc"></td>
         </tr>
     </tbody>
   </table>
@@ -140,19 +157,19 @@ an optional status message.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
-            doHealthcheck hcMap
+            DefaultHealthcheckRoot 
           </code>
           <div class="tip" id="1">
-            <strong>Signature:</strong> hcMap:Map&lt;string,Healthcheck&gt; -&gt; WebPart<br />
+            <strong>Signature:</strong> string<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L312-312" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L321-321" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Evaluates a specified set of healthchecks and returns a new
-<code>HttpContext</code> representing the serialized result.</p>
+          <p>The default healthcheck root path for handlers whose
+path isn't specified: <code>/healthcheck</code>.</p>
 
 
 
@@ -162,18 +179,19 @@ an optional status message.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
-            evaluateHealthcheck hc
+            doHealthcheck hcMap
           </code>
           <div class="tip" id="2">
-            <strong>Signature:</strong> hc:Healthcheck -&gt; Async&lt;HealthcheckData&gt;<br />
+            <strong>Signature:</strong> hcMap:Map&lt;string,Healthcheck&gt; -&gt; WebPart<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L303-303" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L316-316" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Asynchronously evaluates a healthcheck.</p>
+          <p>Evaluates a specified set of healthchecks and returns a new
+<code>HttpContext</code> representing the serialized result.</p>
 
 
 
@@ -190,7 +208,7 @@ an optional status message.</p>
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L307-307" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L311-311" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -204,14 +222,77 @@ an optional status message.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
-            withHealthcheck hcMap app
+            evaluateToHealthcheck he
           </code>
           <div class="tip" id="4">
+            <strong>Signature:</strong> he:HealthEvaluator -&gt; Async&lt;HealthcheckResult&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L307-307" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Asynchronously maps a <code>HealthEvaluator</code> and to a <code>HealthcheckResult</code>.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
+            handleHealthcheck hcMap
+          </code>
+          <div class="tip" id="5">
+            <strong>Signature:</strong> hcMap:Map&lt;string,Healthcheck&gt; -&gt; WebPart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L328-328" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Handles healthcheck requests</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
+            handleHealthcheckAt (...)
+          </code>
+          <div class="tip" id="6">
+            <strong>Signature:</strong> healthcheckRoot:string -&gt; hcMap:Map&lt;string,Healthcheck&gt; -&gt; WebPart<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L324-324" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Handles healthcheck requests at <code>healthcheckRoot</code></p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
+            prefixWithHealthcheck hcMap app
+          </code>
+          <div class="tip" id="7">
             <strong>Signature:</strong> hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:WebPart -&gt; WebPart<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L326-326" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L344-344" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -227,15 +308,15 @@ handling all requests for paths starting with "/healthcheck".</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
-            withHealthcheckAt rootPath hcMap app
+          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
+            prefixWithHealthcheckAt (...)
           </code>
-          <div class="tip" id="5">
-            <strong>Signature:</strong> rootPath:string -&gt; hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:WebPart -&gt; WebPart<br />
+          <div class="tip" id="8">
+            <strong>Signature:</strong> healthcheckRoot:string -&gt; hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:WebPart -&gt; WebPart<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L319-319" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L335-335" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>

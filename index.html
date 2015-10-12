@@ -66,19 +66,21 @@ recorded on health checks that pass.</p>
 <span class="l">10: </span>
 <span class="l">11: </span>
 <span class="l">12: </span>
+<span class="l">13: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="prep">#r</span> <span class="s">&quot;Suave.dll&quot;</span>
+<span class="prep">#r</span> <span class="s">&quot;NodaTime.dll&quot;</span>
 <span class="prep">#r</span> <span class="s">&quot;Cimfu.Suave.Healthcheck.dll&quot;</span>
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">Suave</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Http</span>
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">Cimfu</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">Suave</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">Healthcheck</span>
 
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">myApp</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="t">RequestErrors</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 8)" onmouseover="showTip(event, 'fs8', 8)" class="f">NOT_FOUND</span> <span class="s">&quot;Not here&quot;</span>
 
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 9)" onmouseover="showTip(event, 'fs9', 9)" class="i">healthchecks</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="t">Map</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="f">ofList</span> [<span class="s">&quot;main&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 12)" onmouseover="showTip(event, 'fs12', 12)" class="t">Checks</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 13)" onmouseover="showTip(event, 'fs13', 13)" class="i">serverMainSwitch</span>]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 9)" onmouseover="showTip(event, 'fs9', 9)" class="i">hcMap</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="t">Map</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="f">ofList</span> [<span class="s">&quot;main&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 12)" onmouseover="showTip(event, 'fs12', 12)" class="t">Checks</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 13)" onmouseover="showTip(event, 'fs13', 13)" class="i">serverMain</span>]
 
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 14)" onmouseover="showTip(event, 'fs14', 14)" class="i">app</span> <span class="o">=</span>
   <span onmouseout="hideTip(event, 'fs6', 15)" onmouseover="showTip(event, 'fs6', 15)" class="i">myApp</span>
-  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs15', 16)" onmouseover="showTip(event, 'fs15', 16)" class="f">withHealthcheck</span> <span onmouseout="hideTip(event, 'fs9', 17)" onmouseover="showTip(event, 'fs9', 17)" class="i">healthchecks</span>
+  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs15', 16)" onmouseover="showTip(event, 'fs15', 16)" class="f">prefixWithHealthcheck</span> <span onmouseout="hideTip(event, 'fs9', 17)" onmouseover="showTip(event, 'fs9', 17)" class="i">hcMap</span>
 </code></pre></td>
 </tr>
 </table>
@@ -132,13 +134,13 @@ of the master branch:</p>
 <div class="tip" id="fs6">val myApp : Suave.Types.WebPart<br /><br />Full name: Index.myApp</div>
 <div class="tip" id="fs7">module RequestErrors<br /><br />from Suave.Http</div>
 <div class="tip" id="fs8">val NOT_FOUND : message:string -&gt; Suave.Types.WebPart<br /><br />Full name: Suave.Http.RequestErrors.NOT_FOUND</div>
-<div class="tip" id="fs9">val healthchecks : Map&lt;string,Healthcheck&gt;<br /><br />Full name: Index.healthchecks</div>
+<div class="tip" id="fs9">val hcMap : Map&lt;string,Healthcheck&gt;<br /><br />Full name: Index.hcMap</div>
 <div class="tip" id="fs10">Multiple items<br />module Map<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type Map&lt;&#39;Key,&#39;Value (requires comparison)&gt; =<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IComparable<br />&#160;&#160;interface IEnumerable&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;<br />&#160;&#160;interface ICollection&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;<br />&#160;&#160;interface IDictionary&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;new : elements:seq&lt;&#39;Key * &#39;Value&gt; -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;member Add : key:&#39;Key * value:&#39;Value -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;member ContainsKey : key:&#39;Key -&gt; bool<br />&#160;&#160;override Equals : obj -&gt; bool<br />&#160;&#160;member Remove : key:&#39;Key -&gt; Map&lt;&#39;Key,&#39;Value&gt;<br />&#160;&#160;...<br /><br />Full name: Microsoft.FSharp.Collections.Map&lt;_,_&gt;<br /><br />--------------------<br />new : elements:seq&lt;&#39;Key * &#39;Value&gt; -&gt; Map&lt;&#39;Key,&#39;Value&gt;</div>
 <div class="tip" id="fs11">val ofList : elements:(&#39;Key * &#39;T) list -&gt; Map&lt;&#39;Key,&#39;T&gt; (requires comparison)<br /><br />Full name: Microsoft.FSharp.Collections.Map.ofList</div>
 <div class="tip" id="fs12">module Checks<br /><br />from Cimfu.Suave.Healthcheck</div>
-<div class="tip" id="fs13">val serverMainSwitch : Healthcheck<br /><br />Full name: Cimfu.Suave.Healthcheck.Checks.serverMainSwitch</div>
+<div class="tip" id="fs13">val serverMain : Healthcheck<br /><br />Full name: Cimfu.Suave.Healthcheck.Checks.serverMain</div>
 <div class="tip" id="fs14">val app : Suave.Types.WebPart<br /><br />Full name: Index.app</div>
-<div class="tip" id="fs15">val withHealthcheck : hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:Suave.Types.WebPart -&gt; Suave.Types.WebPart<br /><br />Full name: Cimfu.Suave.Healthcheck.withHealthcheck</div>
+<div class="tip" id="fs15">val prefixWithHealthcheck : hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:Suave.Types.WebPart -&gt; Suave.Types.WebPart<br /><br />Full name: Cimfu.Suave.Healthcheck.prefixWithHealthcheck</div>
 
         </div>
         <div class="span3">

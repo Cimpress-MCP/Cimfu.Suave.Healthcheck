@@ -46,24 +46,104 @@ return <code>Healthy</code> when enabled and <code>Unhealthy</code> when disable
 
 
 </div>
-  <h3>Record Fields</h3>
+  <h3>Constructors</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Record Field</td><td>Description</td></tr>
+      <tr><td>Constructor</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
+          <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
+            new()
+          </code>
+          <div class="tip" id="27">
+            <strong>Signature:</strong> unit -&gt; HealthSwitch<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L180-180" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '28', 28)" onmouseover="showTip(event, '28', 28)">
+            new(disabledMsg)
+          </code>
+          <div class="tip" id="28">
+            <strong>Signature:</strong> disabledMsg:string -&gt; HealthSwitch<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L179-179" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
+            new(enabledMsg, disabledMsg)
+          </code>
+          <div class="tip" id="29">
+            <strong>Signature:</strong> (enabledMsg:string option * disabledMsg:string option) -&gt; HealthSwitch<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L178-178" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
+            new(getTime, enabledMsg, disabledMsg)
+          </code>
+          <div class="tip" id="30">
+            <strong>Signature:</strong> (getTime:(unit -&gt; Instant) * enabledMsg:string option * disabledMsg:string option) -&gt; HealthSwitch<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L177-177" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
             Check
           </code>
-          <div class="tip" id="19">
+          <div class="tip" id="31">
             <strong>Signature:</strong> Healthcheck<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L63-63" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L182-182" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -73,15 +153,15 @@ return <code>Healthy</code> when enabled and <code>Unhealthy</code> when disable
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
-            Disable
+          <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
+            Disable(msg)
           </code>
-          <div class="tip" id="20">
-            <strong>Signature:</strong> unit -&gt; unit<br />
+          <div class="tip" id="32">
+            <strong>Signature:</strong> (msg:string option) -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L62-62" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L186-186" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -91,15 +171,77 @@ return <code>Healthy</code> when enabled and <code>Unhealthy</code> when disable
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
-            Enable
+          <code onmouseout="hideTip(event, '33', 33)" onmouseover="showTip(event, '33', 33)">
+            Disable()
           </code>
-          <div class="tip" id="21">
+          <div class="tip" id="33">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L61-61" class="github-link">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L185-185" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '34', 34)" onmouseover="showTip(event, '34', 34)">
+            Enable(msg)
+          </code>
+          <div class="tip" id="34">
+            <strong>Signature:</strong> (msg:string option) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L184-184" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '35', 35)" onmouseover="showTip(event, '35', 35)">
+            Enable()
+          </code>
+          <div class="tip" id="35">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L183-183" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Static members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Static member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '36', 36)" onmouseover="showTip(event, '36', 36)">
+            ServerMain
+          </code>
+          <div class="tip" id="36">
+            <strong>Signature:</strong> HealthSwitch<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/Cimpress-MCP/Cimfu.Suave.Healthcheck/tree/master/src/Cimfu.Suave.Healthcheck/Healthcheck.fs#L188-188" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
