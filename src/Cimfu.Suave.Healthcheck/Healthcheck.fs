@@ -9,7 +9,6 @@ open Suave.Http.Applicatives
 open Suave.Http.Writers
 open NodaTime
 
-
 module Timing =
   /// Represents one stopwatch timestamp (as reported by `System.Diagnostics.Stopwatch`).
   type [<Measure>] stamp
@@ -225,7 +224,7 @@ module Internal =
       fun g d c -> { GenerationTime = g; Duration = d; Checks = c }
       <!> Json.readWith Json.toInstant "generated_at"
       <*> Json.readWith Json.toDurationAsMs "duration_millis"
-      <*> Json.read "checks"
+      <*> Json.read "tests"
 
   /// Asynchronously evaluates a healthcheck and associates the resulting data with its key.
   let inline evaluateMappedHealthcheck (k, hc : Healthcheck) =
