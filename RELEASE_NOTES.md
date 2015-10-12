@@ -1,3 +1,6 @@
+#### 0.2.2
+* Fix signature of evaluateToHealthcheckWith to return a Healthcheck
+
 #### 0.2.1
 * Fix deserialization of aggregated health check
 
