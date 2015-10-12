@@ -119,7 +119,7 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-12T21:26:49Z;
+<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-12T21:32:45Z;
  Duration = 0:00:00:00;
  Health = Healthy;
  Message = Some "Server enabled";}</code></pre></td></tr></table>
@@ -135,7 +135,7 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-12T21:26:49Z;
+<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-12T21:32:45Z;
  Duration = 0:00:00:00;
  Health = Healthy;
  Message = Some "Server enabled";}</code></pre></td></tr></table>
@@ -161,29 +161,29 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{GenerationTime = 2015-10-12T21:26:52Z;
- Duration = 0:00:00:00.0023556;
+<table class="pre"><tr><td><pre><code>{GenerationTime = 2015-10-12T21:32:47Z;
+ Duration = 0:00:00:00.0022697;
  Checks =
   map
-    [("main", {TestedAt = 2015-10-12T21:26:49Z;
+    [("main", {TestedAt = 2015-10-12T21:32:45Z;
                Duration = 0:00:00:00;
                Health = Healthy;
                Message = Some "Server enabled";});
-     ("redis", {TestedAt = 2015-10-12T21:26:49Z;
+     ("redis", {TestedAt = 2015-10-12T21:32:45Z;
                 Duration = 0:00:00:00;
                 Health = Healthy;
                 Message = null;});
-     ("unreliable", {TestedAt = 2015-10-12T21:26:49Z;
+     ("unreliable", {TestedAt = 2015-10-12T21:32:45Z;
                      Duration = 0:00:00:00;
                      Health = Unhealthy;
                      Message = Some "Service unavailable";})];}</code></pre></td></tr></table>
 
 <p>This result gets serialized to JSON and returned to the client with the appropriate HTTP status</p>
 
-<table class="pre"><tr><td><pre><code>"{"duration_millis":2.4,"generated_at":"2015-10-12T21:26:52.701Z","tests":{"main":{"duration_millis":0,"message
-":"Server enabled","result":"passed","tested_at":"2015-10-12T21:26:49.789Z"},"redis":{"duration_millis":0,"res
-ult":"passed","tested_at":"2015-10-12T21:26:49.789Z"},"unreliable":{"duration_millis":0,"message":"Service una
-vailable","result":"failed","tested_at":"2015-10-12T21:26:49.789Z"}}}"</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>"{"duration_millis":2.3,"generated_at":"2015-10-12T21:32:47.061Z","tests":{"main":{"duration_millis":0,"message
+":"Server enabled","result":"passed","tested_at":"2015-10-12T21:32:45.541Z"},"redis":{"duration_millis":0,"res
+ult":"passed","tested_at":"2015-10-12T21:32:45.541Z"},"unreliable":{"duration_millis":0,"message":"Service una
+vailable","result":"failed","tested_at":"2015-10-12T21:32:45.541Z"}}}"</code></pre></td></tr></table>
 
 <div class="tip" id="fs1">namespace Suave</div>
 <div class="tip" id="fs2">module Http<br /><br />from Suave</div>
