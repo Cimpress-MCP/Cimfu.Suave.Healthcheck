@@ -85,6 +85,6 @@ let aggregateResult =
 (** This result gets serialized to JSON and returned to the client with the appropriate HTTP status *)
 (*** hide ***)
 open Chiron
-let serializedResult = (Json.serialize aggregateResult |> Json.format).ToCharArray () |> Array.chunkBySize 110 |> Array.map System.String |> String.concat "\n"
+let serializedResult = Json.serialize aggregateResult |> Json.formatWith JsonFormattingOptions.Pretty
 
 (*** include-value: serializedResult ***)
