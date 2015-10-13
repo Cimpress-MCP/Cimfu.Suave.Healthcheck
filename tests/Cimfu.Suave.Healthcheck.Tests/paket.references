@@ -1,8 +1,8 @@
 Chiron
 FSharp.Core
+FsCheck
+FsCheck.Xunit
 NodaTime
 Suave
-
-group Test
-  NUnit
-  Unquote
+Unquote
+xunit

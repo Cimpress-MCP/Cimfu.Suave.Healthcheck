@@ -1,6 +1,6 @@
 ﻿module Cimfu.Suave.Healthcheck.SuaveTests
 
-open NUnit.Framework
+open Xunit
 open Swensen.Unquote
 
 open Suave
@@ -8,7 +8,7 @@ open Suave.Types
 
 open Cimfu.Suave.Healthcheck.Internal
 
-[<Test>]
+[<Fact>]
 let ``Roundtrip works as expected for success`` () =
   let expectedResponseBody = """{"duration_millis":0,"generated_at":"1970-01-01T00:00:00.000Z","tests":{"main":{"duration_millis":0,"result":"passed","tested_at":"1970-01-01T00:00:00.000Z"}}}"""
   let switch = HealthSwitch(testTimingSettings.GetTime, None, Some "Test Disabled Message")
@@ -27,7 +27,7 @@ let ``Roundtrip works as expected for success`` () =
         | _ -> failwithf "Response contents were not bytes"
   } |> Async.RunSynchronously
 
-[<Test>]
+[<Fact>]
 let ``Roundtrip works as expected for failure`` () =
   let expectedResponseBody = """{"duration_millis":0,"generated_at":"1970-01-01T00:00:00.000Z","tests":{"main":{"duration_millis":0,"message":"Test Disabled Message","result":"failed","tested_at":"1970-01-01T00:00:00.000Z"}}}"""
   let switch = HealthSwitch(testTimingSettings.GetTime, None, Some "Test Disabled Message")
@@ -59,17 +59,17 @@ let idCtx =
 
 let testApp = handleHealthcheckWith idCtx "/testcheck"
 
-[<Test>]
+[<Fact>]
 let ``Routing handles GETs at /healthcheck as expected`` () =
   let resultContext = testApp (initialContext "http://example.com/testcheck" HttpMethod.GET) |> Async.RunSynchronously
   test <@ Option.isSome resultContext @>
 
-[<Test>]
+[<Fact>]
 let ``Routing handles HEADs at /healthcheck as expected`` () =
   let resultContext = testApp (initialContext "http://example.com/testcheck" HttpMethod.HEAD) |> Async.RunSynchronously
   test <@ Option.isSome resultContext @>
 
-[<Test>]
+[<Fact>]
 let ``Routing handles other methods at /healthcheck as expected`` () =
   let resultContext = testApp (initialContext "http://example.com/testcheck" HttpMethod.POST) |> Async.RunSynchronously
 
@@ -78,7 +78,7 @@ let ``Routing handles other methods at /healthcheck as expected`` () =
   | Some c ->
     c.response.status =! HTTP_405
 
-[<Test>]
+[<Fact>]
 let ``Routing doesn't handle non-healthcheck paths`` () =
   let resultContext = testApp (initialContext "http://example.com/notmine" HttpMethod.GET) |> Async.RunSynchronously
 
