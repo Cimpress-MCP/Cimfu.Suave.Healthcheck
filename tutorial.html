@@ -119,7 +119,7 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-12T21:32:45Z;
+<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-13T02:47:50Z;
  Duration = 0:00:00:00;
  Health = Healthy;
  Message = Some "Server enabled";}</code></pre></td></tr></table>
@@ -135,7 +135,7 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-12T21:32:45Z;
+<table class="pre"><tr><td><pre><code>{TestedAt = 2015-10-13T02:47:50Z;
  Duration = 0:00:00:00;
  Health = Healthy;
  Message = Some "Server enabled";}</code></pre></td></tr></table>
@@ -161,29 +161,48 @@ instead of passing the context to <code>myApp</code>.</p>
 </tr>
 </table>
 
-<table class="pre"><tr><td><pre><code>{GenerationTime = 2015-10-12T21:32:47Z;
- Duration = 0:00:00:00.0022697;
+<table class="pre"><tr><td><pre><code>{GenerationTime = 2015-10-13T02:47:52Z;
+ Duration = 0:00:00:00.002716;
  Checks =
   map
-    [("main", {TestedAt = 2015-10-12T21:32:45Z;
+    [("main", {TestedAt = 2015-10-13T02:47:50Z;
                Duration = 0:00:00:00;
                Health = Healthy;
                Message = Some "Server enabled";});
-     ("redis", {TestedAt = 2015-10-12T21:32:45Z;
+     ("redis", {TestedAt = 2015-10-13T02:47:50Z;
                 Duration = 0:00:00:00;
                 Health = Healthy;
                 Message = null;});
-     ("unreliable", {TestedAt = 2015-10-12T21:32:45Z;
+     ("unreliable", {TestedAt = 2015-10-13T02:47:50Z;
                      Duration = 0:00:00:00;
                      Health = Unhealthy;
                      Message = Some "Service unavailable";})];}</code></pre></td></tr></table>
 
 <p>This result gets serialized to JSON and returned to the client with the appropriate HTTP status</p>
 
-<table class="pre"><tr><td><pre><code>"{"duration_millis":2.3,"generated_at":"2015-10-12T21:32:47.061Z","tests":{"main":{"duration_millis":0,"message
-":"Server enabled","result":"passed","tested_at":"2015-10-12T21:32:45.541Z"},"redis":{"duration_millis":0,"res
-ult":"passed","tested_at":"2015-10-12T21:32:45.541Z"},"unreliable":{"duration_millis":0,"message":"Service una
-vailable","result":"failed","tested_at":"2015-10-12T21:32:45.541Z"}}}"</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>"{
+  "duration_millis": 2.7,
+  "generated_at": "2015-10-13T02:47:52.121Z",
+  "tests": {
+    "main": {
+      "duration_millis": 0,
+      "message": "Server enabled",
+      "result": "passed",
+      "tested_at": "2015-10-13T02:47:50.605Z"
+    },
+    "redis": {
+      "duration_millis": 0,
+      "result": "passed",
+      "tested_at": "2015-10-13T02:47:50.605Z"
+    },
+    "unreliable": {
+      "duration_millis": 0,
+      "message": "Service unavailable",
+      "result": "failed",
+      "tested_at": "2015-10-13T02:47:50.605Z"
+    }
+  }
+}"</code></pre></td></tr></table>
 
 <div class="tip" id="fs1">namespace Suave</div>
 <div class="tip" id="fs2">module Http<br /><br />from Suave</div>
@@ -224,14 +243,9 @@ vailable","result":"failed","tested_at":"2015-10-12T21:32:45.541Z"}}}"</code></p
 <div class="tip" id="fs37">val serializedResult : string<br /><br />Full name: Tutorial.serializedResult</div>
 <div class="tip" id="fs38">Multiple items<br />module Json<br /><br />from Chiron.Mapping<br /><br />--------------------<br />module Json<br /><br />from Chiron.Formatting<br /><br />--------------------<br />module Json<br /><br />from Chiron.Parsing<br /><br />--------------------<br />module Json<br /><br />from Chiron.Lens<br /><br />--------------------<br />module Json<br /><br />from Chiron.Functional<br /><br />--------------------<br />type Json =<br />&#160;&#160;| Array of Json list<br />&#160;&#160;| Bool of bool<br />&#160;&#160;| Null of unit<br />&#160;&#160;| Number of decimal<br />&#160;&#160;| Object of Map&lt;string,Json&gt;<br />&#160;&#160;| String of string<br />&#160;&#160;static member Array_ : PLens&lt;Json,Json list&gt;<br />&#160;&#160;static member private Array__ : (Json -&gt; Json list option) * (Json list -&gt; Json)<br />&#160;&#160;static member Bool_ : PLens&lt;Json,bool&gt;<br />&#160;&#160;static member private Bool__ : (Json -&gt; bool option) * (bool -&gt; Json)<br />&#160;&#160;static member Null_ : PLens&lt;Json,unit&gt;<br />&#160;&#160;static member private Null__ : (Json -&gt; unit option) * (unit -&gt; Json)<br />&#160;&#160;static member Number_ : PLens&lt;Json,decimal&gt;<br />&#160;&#160;static member private Number__ : (Json -&gt; decimal option) * (decimal -&gt; Json)<br />&#160;&#160;static member Object_ : PLens&lt;Json,Map&lt;string,Json&gt;&gt;<br />&#160;&#160;static member private Object__ : (Json -&gt; Map&lt;string,Json&gt; option) * (Map&lt;string,Json&gt; -&gt; Json)<br />&#160;&#160;static member String_ : PLens&lt;Json,string&gt;<br />&#160;&#160;static member private String__ : (Json -&gt; string option) * (string -&gt; Json)<br /><br />Full name: Chiron.Json<br /><br />--------------------<br />type Json&lt;&#39;a&gt; = Json -&gt; JsonResult&lt;&#39;a&gt; * Json<br /><br />Full name: Chiron.Functional.Json&lt;_&gt;</div>
 <div class="tip" id="fs39">val serialize : a:&#39;a -&gt; Json (requires member ToJson)<br /><br />Full name: Chiron.Mapping.Json.serialize</div>
-<div class="tip" id="fs40">val format : json:Json -&gt; string<br /><br />Full name: Chiron.Formatting.Json.format</div>
-<div class="tip" id="fs41">Multiple items<br />union case Json.Array: Json list -&gt; Json<br /><br />--------------------<br />module Array<br /><br />from Microsoft.FSharp.Collections</div>
-<div class="tip" id="fs42">val chunkBySize : chunkSize:int -&gt; array:&#39;T [] -&gt; &#39;T [] []<br /><br />Full name: Microsoft.FSharp.Collections.Array.chunkBySize</div>
-<div class="tip" id="fs43">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; array:&#39;T [] -&gt; &#39;U []<br /><br />Full name: Microsoft.FSharp.Collections.Array.map</div>
-<div class="tip" id="fs44">namespace System</div>
-<div class="tip" id="fs45">Multiple items<br />type String =<br />&#160;&#160;new : value:char -&gt; string + 7 overloads<br />&#160;&#160;member Chars : int -&gt; char<br />&#160;&#160;member Clone : unit -&gt; obj<br />&#160;&#160;member CompareTo : value:obj -&gt; int + 1 overload<br />&#160;&#160;member Contains : value:string -&gt; bool<br />&#160;&#160;member CopyTo : sourceIndex:int * destination:char[] * destinationIndex:int * count:int -&gt; unit<br />&#160;&#160;member EndsWith : value:string -&gt; bool + 2 overloads<br />&#160;&#160;member Equals : obj:obj -&gt; bool + 2 overloads<br />&#160;&#160;member GetEnumerator : unit -&gt; CharEnumerator<br />&#160;&#160;member GetHashCode : unit -&gt; int<br />&#160;&#160;...<br /><br />Full name: System.String<br /><br />--------------------<br />System.String(value: nativeptr&lt;char&gt;) : unit<br />System.String(value: nativeptr&lt;sbyte&gt;) : unit<br />System.String(value: char []) : unit<br />System.String(c: char, count: int) : unit<br />System.String(value: nativeptr&lt;char&gt;, startIndex: int, length: int) : unit<br />System.String(value: nativeptr&lt;sbyte&gt;, startIndex: int, length: int) : unit<br />System.String(value: char [], startIndex: int, length: int) : unit<br />System.String(value: nativeptr&lt;sbyte&gt;, startIndex: int, length: int, enc: System.Text.Encoding) : unit</div>
-<div class="tip" id="fs46">Multiple items<br />union case Json.String: string -&gt; Json<br /><br />--------------------<br />module String<br /><br />from Microsoft.FSharp.Core</div>
-<div class="tip" id="fs47">val concat : sep:string -&gt; strings:seq&lt;string&gt; -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.String.concat</div>
+<div class="tip" id="fs40">val formatWith : options:JsonFormattingOptions -&gt; json:Json -&gt; string<br /><br />Full name: Chiron.Formatting.Json.formatWith</div>
+<div class="tip" id="fs41">type JsonFormattingOptions =<br />&#160;&#160;{Spacing: StringBuilder -&gt; StringBuilder;<br />&#160;&#160;&#160;NewLine: int -&gt; StringBuilder -&gt; StringBuilder;}<br />&#160;&#160;static member Compact : JsonFormattingOptions<br />&#160;&#160;static member Pretty : JsonFormattingOptions<br />&#160;&#160;static member SingleLine : JsonFormattingOptions<br /><br />Full name: Chiron.Formatting.JsonFormattingOptions</div>
+<div class="tip" id="fs42">property JsonFormattingOptions.Pretty: JsonFormattingOptions</div>
 
         </div>
         <div class="span3">
