@@ -1,3 +1,6 @@
+#### 0.2.3
+* Lock Chiron dependency to the 5.x series
+
 #### 0.2.2
 * Fix signature of evaluateToHealthcheckWith to return a Healthcheck
 
