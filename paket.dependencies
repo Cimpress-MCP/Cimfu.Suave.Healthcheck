@@ -3,7 +3,7 @@ source https://nuget.org/api/v2
 nuget Chiron ~> 6.0
 nuget FSharp.Core >= 3.1.2.5
 nuget NodaTime >= 1.0
-nuget Suave >= 0.31
+nuget Suave >= 1.0
 
 group Build
   source https://nuget.org/api/v2

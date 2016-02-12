@@ -4,7 +4,6 @@ open NUnit.Framework
 open Swensen.Unquote
 
 open Suave
-open Suave.Types
 
 open Cimfu.Suave.Healthcheck.Internal
 
@@ -48,9 +47,9 @@ let ``Roundtrip works as expected for failure`` () =
   } |> Async.RunSynchronously
 
 let initialContext uri ``method`` =
-  { Suave.Types.HttpContext.empty with
+  { HttpContext.empty with
       request =
-        { Suave.Types.HttpRequest.empty with
+        { HttpRequest.empty with
             url = System.Uri uri
             ``method`` = ``method`` } }
 

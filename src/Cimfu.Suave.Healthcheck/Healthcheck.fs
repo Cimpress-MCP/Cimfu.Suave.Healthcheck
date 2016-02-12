@@ -3,10 +3,10 @@ module Cimfu.Suave.Healthcheck
 
 open Chiron
 open Chiron.Operators
-open Suave.Types
-open Suave.Http
-open Suave.Http.Applicatives
-open Suave.Http.Writers
+open Suave
+open Suave.Filters
+open Suave.Operators
+open Suave.Writers
 open NodaTime
 
 /// Timing module. Used to provide values for test duration and time of tests.
@@ -271,20 +271,20 @@ module Internal =
   /// other requests by responding with `405 METHOD NOT ALLOWED`.
   let inline allowGetOrHeadOnly (app : WebPart) : WebPart =
     choose
-      [ choose [ GET; HEAD ] >>= app
-        setHeader "Allow" "GET, HEAD" >>= RequestErrors.METHOD_NOT_ALLOWED "" ]
+      [ choose [ GET; HEAD ] >=> app
+        setHeader "Allow" "GET, HEAD" >=> RequestErrors.METHOD_NOT_ALLOWED "" ]
 
   /// Evaluates the healthchecks specified in `hcMap` and attaches the appropriate
   /// headers onto the response.
   let inline healthcheckHandler doHealthcheckWith hcMap : WebPart =
     doHealthcheckWith hcMap
-    >>= setMimeType "application/json"
-    >>= setHeader "Cache-Control" "no-cache"
+    >=> setMimeType "application/json"
+    >=> setHeader "Cache-Control" "no-cache"
 
   /// Handles healthcheck requests to the `healthcheckRoot` with the specified
   /// `healthcheckHandler`
   let inline handleHealthcheckWith healthcheckHandler healthcheckRoot : WebPart =
-    path healthcheckRoot >>= allowGetOrHeadOnly healthcheckHandler
+    path healthcheckRoot >=> allowGetOrHeadOnly healthcheckHandler
 
   /// Asynchronously maps a `HealthEvaluator` and to a `HealthcheckResult`
   /// using the timing settings from `tsSettings`.
