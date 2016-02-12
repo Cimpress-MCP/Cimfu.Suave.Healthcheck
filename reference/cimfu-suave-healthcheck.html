@@ -291,7 +291,7 @@ path isn't specified: <code>/healthcheck</code>.</p>
             prefixWithHealthcheck hcMap app
           </code>
           <div class="tip" id="7">
-            <strong>Signature:</strong> hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:WebPart -&gt; WebPart<br />
+            <strong>Signature:</strong> hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:WebPart&lt;HttpContext&gt; -&gt; WebPart&lt;HttpContext&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
@@ -315,7 +315,7 @@ handling all requests for paths starting with "/healthcheck".</p>
             prefixWithHealthcheckAt (...)
           </code>
           <div class="tip" id="8">
-            <strong>Signature:</strong> healthcheckRoot:string -&gt; hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:WebPart -&gt; WebPart<br />
+            <strong>Signature:</strong> healthcheckRoot:string -&gt; hcMap:Map&lt;string,Healthcheck&gt; -&gt; app:WebPart&lt;HttpContext&gt; -&gt; WebPart&lt;HttpContext&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
