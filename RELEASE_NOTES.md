@@ -1,3 +1,6 @@
+#### 0.2.5
+* Update Suave dependency to 1.0
+
 #### 0.2.4
 * Lock Chiron dependency to the 6.x series
 
